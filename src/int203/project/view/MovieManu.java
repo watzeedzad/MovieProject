@@ -5,6 +5,16 @@
  */
 package int203.project.view;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.util.Date;
+import javax.swing.JLabel;
+import javax.swing.Timer;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author jiraw
@@ -16,8 +26,8 @@ public class MovieManu extends javax.swing.JFrame {
      */
     public MovieManu() {
         initComponents();
+        UIManager.getLookAndFeelDefaults().put("defaultFont", new Font("TH Mali Grade 6", Font.BOLD, 20));
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,10 +40,19 @@ public class MovieManu extends javax.swing.JFrame {
         mainMenu = new javax.swing.JPanel();
         searchMovie = new javax.swing.JButton();
         welcomeText = new javax.swing.JLabel();
+        timeText = new javax.swing.JLabel();
+        searchAward = new javax.swing.JButton();
+        searchActor = new javax.swing.JButton();
+        searchStudio = new javax.swing.JButton();
+        searchTrailer = new javax.swing.JButton();
+        searchTrailer1 = new javax.swing.JButton();
+        searchDirector = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("INT203-Project");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        searchMovie.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
         searchMovie.setText("Search Movie");
         searchMovie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -41,41 +60,121 @@ public class MovieManu extends javax.swing.JFrame {
             }
         });
 
-        welcomeText.setFont(new java.awt.Font("Nirmala UI", 0, 30)); // NOI18N
+        welcomeText.setFont(new java.awt.Font("TH Mali Grade 6", 1, 60)); // NOI18N
         welcomeText.setText("Welcome to Movie Data System");
+
+        timeText.setFont(new java.awt.Font("TH Mali Grade 6", 1, 30)); // NOI18N
+        timeText.setText("<TIME>");
+        timeText.setText(clock(timeText));
+
+        searchAward.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        searchAward.setText("Search Award");
+        searchAward.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchAwardActionPerformed(evt);
+            }
+        });
+
+        searchActor.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        searchActor.setText("Search Actor");
+        searchActor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchActorActionPerformed(evt);
+            }
+        });
+
+        searchStudio.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        searchStudio.setText("Search Studio");
+        searchStudio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchStudioActionPerformed(evt);
+            }
+        });
+
+        searchTrailer.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        searchTrailer.setText("Search Trailer");
+        searchTrailer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTrailerActionPerformed(evt);
+            }
+        });
+
+        searchTrailer1.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        searchTrailer1.setText("Search Soundtrack");
+        searchTrailer1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTrailer1ActionPerformed(evt);
+            }
+        });
+
+        searchDirector.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        searchDirector.setText("Search Director");
+        searchDirector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchDirectorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainMenuLayout = new javax.swing.GroupLayout(mainMenu);
         mainMenu.setLayout(mainMenuLayout);
         mainMenuLayout.setHorizontalGroup(
             mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainMenuLayout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(searchMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMenuLayout.createSequentialGroup()
-                .addContainerGap(176, Short.MAX_VALUE)
-                .addComponent(welcomeText)
-                .addGap(169, 169, 169))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(timeText)
+                .addGap(58, 58, 58))
+            .addGroup(mainMenuLayout.createSequentialGroup()
+                .addGroup(mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainMenuLayout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(welcomeText))
+                    .addGroup(mainMenuLayout.createSequentialGroup()
+                        .addGap(298, 298, 298)
+                        .addGroup(mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(searchTrailer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(searchTrailer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(searchStudio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(searchAward, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(searchActor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(searchMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchDirector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         mainMenuLayout.setVerticalGroup(
             mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainMenuLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(21, 21, 21)
+                .addComponent(timeText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(welcomeText)
-                .addGap(32, 32, 32)
-                .addComponent(searchMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(335, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(searchMovie)
+                .addGap(18, 18, 18)
+                .addComponent(searchActor)
+                .addGap(18, 18, 18)
+                .addComponent(searchAward)
+                .addGap(18, 18, 18)
+                .addComponent(searchStudio)
+                .addGap(18, 18, 18)
+                .addComponent(searchTrailer)
+                .addGap(18, 18, 18)
+                .addComponent(searchTrailer1)
+                .addGap(18, 18, 18)
+                .addComponent(searchDirector)
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(mainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -85,10 +184,34 @@ public class MovieManu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_searchMovieActionPerformed
 
+    private void searchAwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAwardActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchAwardActionPerformed
+
+    private void searchActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchActorActionPerformed
+
+    private void searchStudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchStudioActionPerformed
+
+    private void searchTrailerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTrailerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTrailerActionPerformed
+
+    private void searchTrailer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTrailer1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTrailer1ActionPerformed
+
+    private void searchDirectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDirectorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchDirectorActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -98,17 +221,12 @@ public class MovieManu extends javax.swing.JFrame {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());    //  ใช้ UI ตามแบบ default ของระบบ OS ใดๆและเลิกใช้ UI แบบ Nimbus
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MovieManu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MovieManu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MovieManu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MovieManu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            ex.printStackTrace();
         }
         //</editor-fold>
 
@@ -120,9 +238,27 @@ public class MovieManu extends javax.swing.JFrame {
         });
     }
 
+    public String clock(final JLabel label) {
+        Timer timer = new Timer(0, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                label.setText(DateFormat.getDateTimeInstance().format(new Date()));
+            }
+        });
+        timer.start();
+        return "";
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel mainMenu;
+    private javax.swing.JButton searchActor;
+    private javax.swing.JButton searchAward;
+    private javax.swing.JButton searchDirector;
     private javax.swing.JButton searchMovie;
+    private javax.swing.JButton searchStudio;
+    private javax.swing.JButton searchTrailer;
+    private javax.swing.JButton searchTrailer1;
+    private javax.swing.JLabel timeText;
     private javax.swing.JLabel welcomeText;
     // End of variables declaration//GEN-END:variables
 }
