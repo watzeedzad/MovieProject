@@ -5,15 +5,20 @@
  */
 package int203.project.view;
 
-import java.awt.Font;
+import int203.project.etc.ConnectionBuilder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -24,10 +29,15 @@ public class MovieManu extends javax.swing.JFrame {
     /**
      * Creates new form MovieManu
      */
+    Connection conn = null;
+    PreparedStatement pstm = null;
+    ResultSet rs = null;
+    
     public MovieManu() {
         initComponents();
-        UIManager.getLookAndFeelDefaults().put("defaultFont", new Font("TH Mali Grade 6", Font.BOLD, 20));
+        conn = ConnectionBuilder.getConnection();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,20 +47,43 @@ public class MovieManu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainMenu = new javax.swing.JPanel();
+        searchMovieResult = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : ((javax.persistence.Query)null).getResultList();
+        bodyPanel = new javax.swing.JPanel();
+        mainMenuPanel = new javax.swing.JPanel();
         searchMovie = new javax.swing.JButton();
-        welcomeText = new javax.swing.JLabel();
-        timeText = new javax.swing.JLabel();
         searchAward = new javax.swing.JButton();
         searchActor = new javax.swing.JButton();
         searchStudio = new javax.swing.JButton();
-        searchTrailer = new javax.swing.JButton();
-        searchTrailer1 = new javax.swing.JButton();
+        searchSoundtrack = new javax.swing.JButton();
         searchDirector = new javax.swing.JButton();
+        searchMoviePanel = new javax.swing.JPanel();
+        backMainMovie = new javax.swing.JButton();
+        radioSearchMovieId = new javax.swing.JRadioButton();
+        radioSearchMovieName = new javax.swing.JRadioButton();
+        textSearchMovieId = new javax.swing.JTextField();
+        textSearchMovieName = new javax.swing.JTextField();
+        searchMovieSubmit = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        searchAwardPanel = new javax.swing.JPanel();
+        backMainAward = new javax.swing.JButton();
+        searchActorPanel = new javax.swing.JPanel();
+        backMainActor = new javax.swing.JButton();
+        searchStudioPanel = new javax.swing.JPanel();
+        backMainStudio = new javax.swing.JButton();
+        searchSoundtrackPanel = new javax.swing.JPanel();
+        backMainSoundtrack = new javax.swing.JButton();
+        searchDirectorPanel = new javax.swing.JPanel();
+        backMainDirector = new javax.swing.JButton();
+        headerPanel = new javax.swing.JPanel();
+        welcomeText = new javax.swing.JLabel();
+        timeText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("INT203-Project");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        bodyPanel.setLayout(new java.awt.CardLayout());
 
         searchMovie.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
         searchMovie.setText("Search Movie");
@@ -59,13 +92,6 @@ public class MovieManu extends javax.swing.JFrame {
                 searchMovieActionPerformed(evt);
             }
         });
-
-        welcomeText.setFont(new java.awt.Font("TH Mali Grade 6", 1, 60)); // NOI18N
-        welcomeText.setText("Welcome to Movie Data System");
-
-        timeText.setFont(new java.awt.Font("TH Mali Grade 6", 1, 30)); // NOI18N
-        timeText.setText("<TIME>");
-        timeText.setText(clock(timeText));
 
         searchAward.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
         searchAward.setText("Search Award");
@@ -91,19 +117,11 @@ public class MovieManu extends javax.swing.JFrame {
             }
         });
 
-        searchTrailer.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
-        searchTrailer.setText("Search Trailer");
-        searchTrailer.addActionListener(new java.awt.event.ActionListener() {
+        searchSoundtrack.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        searchSoundtrack.setText("Search Soundtrack");
+        searchSoundtrack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchTrailerActionPerformed(evt);
-            }
-        });
-
-        searchTrailer1.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
-        searchTrailer1.setText("Search Soundtrack");
-        searchTrailer1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchTrailer1ActionPerformed(evt);
+                searchSoundtrackActionPerformed(evt);
             }
         });
 
@@ -115,98 +133,415 @@ public class MovieManu extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout mainMenuLayout = new javax.swing.GroupLayout(mainMenu);
-        mainMenu.setLayout(mainMenuLayout);
-        mainMenuLayout.setHorizontalGroup(
-            mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMenuLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(timeText)
-                .addGap(58, 58, 58))
-            .addGroup(mainMenuLayout.createSequentialGroup()
-                .addGroup(mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainMenuLayout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(welcomeText))
-                    .addGroup(mainMenuLayout.createSequentialGroup()
-                        .addGap(298, 298, 298)
-                        .addGroup(mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(searchTrailer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(searchTrailer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(searchStudio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(searchAward, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(searchActor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(searchMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchDirector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(140, Short.MAX_VALUE))
+        javax.swing.GroupLayout mainMenuPanelLayout = new javax.swing.GroupLayout(mainMenuPanel);
+        mainMenuPanel.setLayout(mainMenuPanelLayout);
+        mainMenuPanelLayout.setHorizontalGroup(
+            mainMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainMenuPanelLayout.createSequentialGroup()
+                .addGap(365, 365, 365)
+                .addGroup(mainMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(searchDirector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchSoundtrack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchStudio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchAward, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchActor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(366, Short.MAX_VALUE))
         );
-        mainMenuLayout.setVerticalGroup(
-            mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainMenuLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(timeText)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(welcomeText)
-                .addGap(39, 39, 39)
-                .addComponent(searchMovie)
-                .addGap(18, 18, 18)
+        mainMenuPanelLayout.setVerticalGroup(
+            mainMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainMenuPanelLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
                 .addComponent(searchActor)
                 .addGap(18, 18, 18)
                 .addComponent(searchAward)
                 .addGap(18, 18, 18)
                 .addComponent(searchStudio)
                 .addGap(18, 18, 18)
-                .addComponent(searchTrailer)
+                .addComponent(searchSoundtrack)
                 .addGap(18, 18, 18)
-                .addComponent(searchTrailer1)
+                .addComponent(searchMovie)
                 .addGap(18, 18, 18)
                 .addComponent(searchDirector)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
+        );
+
+        bodyPanel.add(mainMenuPanel, "card3");
+
+        backMainMovie.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        backMainMovie.setText("Back");
+        backMainMovie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backMainMovieActionPerformed(evt);
+            }
+        });
+
+        radioSearchMovieId.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        radioSearchMovieId.setText("Search by Movie ID");
+        radioSearchMovieId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSearchMovieIdActionPerformed(evt);
+            }
+        });
+
+        radioSearchMovieName.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        radioSearchMovieName.setText("Search by Movie Name");
+        radioSearchMovieName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSearchMovieNameActionPerformed(evt);
+            }
+        });
+
+        searchMovieSubmit.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        searchMovieSubmit.setText("Submit");
+        searchMovieSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchMovieSubmitActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout searchMoviePanelLayout = new javax.swing.GroupLayout(searchMoviePanel);
+        searchMoviePanel.setLayout(searchMoviePanelLayout);
+        searchMoviePanelLayout.setHorizontalGroup(
+            searchMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchMoviePanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(searchMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchMoviePanelLayout.createSequentialGroup()
+                        .addComponent(backMainMovie)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(searchMoviePanelLayout.createSequentialGroup()
+                        .addGroup(searchMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radioSearchMovieId)
+                            .addGroup(searchMoviePanelLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(textSearchMovieId, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24)
+                        .addGroup(searchMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(searchMoviePanelLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(textSearchMovieName, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(radioSearchMovieName))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                        .addComponent(searchMovieSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62))))
+            .addGroup(searchMoviePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+        );
+        searchMoviePanelLayout.setVerticalGroup(
+            searchMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchMoviePanelLayout.createSequentialGroup()
+                .addGroup(searchMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchMoviePanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(searchMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(searchMoviePanelLayout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addGroup(searchMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(textSearchMovieId, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textSearchMovieName, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(searchMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(radioSearchMovieId)
+                                .addComponent(radioSearchMovieName))))
+                    .addGroup(searchMoviePanelLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(searchMovieSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(backMainMovie)
+                .addGap(24, 24, 24))
+        );
+
+        bodyPanel.add(searchMoviePanel, "card2");
+
+        backMainAward.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        backMainAward.setText("Back");
+        backMainAward.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backMainAwardActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout searchAwardPanelLayout = new javax.swing.GroupLayout(searchAwardPanel);
+        searchAwardPanel.setLayout(searchAwardPanelLayout);
+        searchAwardPanelLayout.setHorizontalGroup(
+            searchAwardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchAwardPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(backMainAward)
+                .addContainerGap(848, Short.MAX_VALUE))
+        );
+        searchAwardPanelLayout.setVerticalGroup(
+            searchAwardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchAwardPanelLayout.createSequentialGroup()
+                .addContainerGap(429, Short.MAX_VALUE)
+                .addComponent(backMainAward)
+                .addGap(24, 24, 24))
+        );
+
+        bodyPanel.add(searchAwardPanel, "card2");
+
+        backMainActor.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        backMainActor.setText("Back");
+        backMainActor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backMainActorActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout searchActorPanelLayout = new javax.swing.GroupLayout(searchActorPanel);
+        searchActorPanel.setLayout(searchActorPanelLayout);
+        searchActorPanelLayout.setHorizontalGroup(
+            searchActorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchActorPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(backMainActor)
+                .addContainerGap(848, Short.MAX_VALUE))
+        );
+        searchActorPanelLayout.setVerticalGroup(
+            searchActorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchActorPanelLayout.createSequentialGroup()
+                .addContainerGap(429, Short.MAX_VALUE)
+                .addComponent(backMainActor)
+                .addGap(24, 24, 24))
+        );
+
+        bodyPanel.add(searchActorPanel, "card2");
+
+        backMainStudio.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        backMainStudio.setText("Back");
+        backMainStudio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backMainStudioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout searchStudioPanelLayout = new javax.swing.GroupLayout(searchStudioPanel);
+        searchStudioPanel.setLayout(searchStudioPanelLayout);
+        searchStudioPanelLayout.setHorizontalGroup(
+            searchStudioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchStudioPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(backMainStudio)
+                .addContainerGap(848, Short.MAX_VALUE))
+        );
+        searchStudioPanelLayout.setVerticalGroup(
+            searchStudioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchStudioPanelLayout.createSequentialGroup()
+                .addContainerGap(429, Short.MAX_VALUE)
+                .addComponent(backMainStudio)
+                .addGap(24, 24, 24))
+        );
+
+        bodyPanel.add(searchStudioPanel, "card2");
+
+        backMainSoundtrack.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        backMainSoundtrack.setText("Back");
+        backMainSoundtrack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backMainSoundtrackActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout searchSoundtrackPanelLayout = new javax.swing.GroupLayout(searchSoundtrackPanel);
+        searchSoundtrackPanel.setLayout(searchSoundtrackPanelLayout);
+        searchSoundtrackPanelLayout.setHorizontalGroup(
+            searchSoundtrackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchSoundtrackPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(backMainSoundtrack)
+                .addContainerGap(848, Short.MAX_VALUE))
+        );
+        searchSoundtrackPanelLayout.setVerticalGroup(
+            searchSoundtrackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchSoundtrackPanelLayout.createSequentialGroup()
+                .addContainerGap(429, Short.MAX_VALUE)
+                .addComponent(backMainSoundtrack)
+                .addGap(24, 24, 24))
+        );
+
+        bodyPanel.add(searchSoundtrackPanel, "card2");
+
+        backMainDirector.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        backMainDirector.setText("Back");
+        backMainDirector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backMainDirectorActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout searchDirectorPanelLayout = new javax.swing.GroupLayout(searchDirectorPanel);
+        searchDirectorPanel.setLayout(searchDirectorPanelLayout);
+        searchDirectorPanelLayout.setHorizontalGroup(
+            searchDirectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchDirectorPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(backMainDirector)
+                .addContainerGap(848, Short.MAX_VALUE))
+        );
+        searchDirectorPanelLayout.setVerticalGroup(
+            searchDirectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchDirectorPanelLayout.createSequentialGroup()
+                .addContainerGap(429, Short.MAX_VALUE)
+                .addComponent(backMainDirector)
+                .addGap(24, 24, 24))
+        );
+
+        bodyPanel.add(searchDirectorPanel, "card2");
+
+        welcomeText.setFont(new java.awt.Font("TH Mali Grade 6", 1, 60)); // NOI18N
+        welcomeText.setText("Welcome to Movie Data System");
+
+        timeText.setFont(new java.awt.Font("TH Mali Grade 6", 1, 30)); // NOI18N
+        timeText.setText("<TIME>");
+        timeText.setText(clock(timeText));
+
+        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
+        headerPanel.setLayout(headerPanelLayout);
+        headerPanelLayout.setHorizontalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
+                        .addComponent(welcomeText)
+                        .addGap(189, 189, 189))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
+                        .addComponent(timeText)
+                        .addGap(54, 54, 54))))
+        );
+        headerPanelLayout.setVerticalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(timeText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(welcomeText)
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bodyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(mainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchMovieActionPerformed
+    private void backMainMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMainMovieActionPerformed
+        clickMainBack(bodyPanel, mainMenuPanel);
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchMovieActionPerformed
+    }//GEN-LAST:event_backMainMovieActionPerformed
 
-    private void searchAwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAwardActionPerformed
+    private void backMainActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMainActorActionPerformed
+        clickMainBack(bodyPanel, mainMenuPanel);
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchAwardActionPerformed
+    }//GEN-LAST:event_backMainActorActionPerformed
+
+    private void backMainAwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMainAwardActionPerformed
+        clickMainBack(bodyPanel, mainMenuPanel);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backMainAwardActionPerformed
+
+    private void backMainStudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMainStudioActionPerformed
+        clickMainBack(bodyPanel, mainMenuPanel);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backMainStudioActionPerformed
+
+    private void backMainSoundtrackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMainSoundtrackActionPerformed
+        clickMainBack(bodyPanel, mainMenuPanel);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backMainSoundtrackActionPerformed
+
+    private void backMainDirectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMainDirectorActionPerformed
+        clickMainBack(bodyPanel, mainMenuPanel);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backMainDirectorActionPerformed
 
     private void searchActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActorActionPerformed
+        clickMainBack(bodyPanel, searchActorPanel);
         // TODO add your handling code here:
     }//GEN-LAST:event_searchActorActionPerformed
 
+    private void searchAwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAwardActionPerformed
+        clickMainBack(bodyPanel, searchAwardPanel);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchAwardActionPerformed
+
     private void searchStudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudioActionPerformed
+        clickMainBack(bodyPanel, searchStudioPanel);
         // TODO add your handling code here:
     }//GEN-LAST:event_searchStudioActionPerformed
 
-    private void searchTrailerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTrailerActionPerformed
+    private void searchSoundtrackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSoundtrackActionPerformed
+        clickMainBack(bodyPanel, searchSoundtrackPanel);
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchTrailerActionPerformed
+    }//GEN-LAST:event_searchSoundtrackActionPerformed
 
-    private void searchTrailer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTrailer1ActionPerformed
+    private void searchMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchMovieActionPerformed
+        clickMainBack(bodyPanel, searchMoviePanel);
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchTrailer1ActionPerformed
+    }//GEN-LAST:event_searchMovieActionPerformed
 
     private void searchDirectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDirectorActionPerformed
+        clickMainBack(bodyPanel, searchDirectorPanel);
         // TODO add your handling code here:
     }//GEN-LAST:event_searchDirectorActionPerformed
+
+    private void radioSearchMovieNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSearchMovieNameActionPerformed
+        if (radioSearchMovieName.isSelected()) {
+            textSearchMovieName.setEnabled(true);
+            textSearchMovieId.setEnabled(false);
+        }
+        radioSearchMovieId.setSelected(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioSearchMovieNameActionPerformed
+
+    private void radioSearchMovieIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSearchMovieIdActionPerformed
+        if (radioSearchMovieId.isSelected()) {
+            textSearchMovieId.setEnabled(true);
+            textSearchMovieName.setEnabled(false);
+        }
+        radioSearchMovieName.setSelected(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioSearchMovieIdActionPerformed
+
+    private void searchMovieSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchMovieSubmitActionPerformed
+        String searchInputName = "";
+        int searchInputId;
+        if (radioSearchMovieId.isSelected()) {
+            searchInputId = Integer.parseInt(textSearchMovieId.getText());
+        } else {
+            searchInputName = textSearchMovieName.getText();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchMovieSubmitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,15 +584,45 @@ public class MovieManu extends javax.swing.JFrame {
         return "";
     }
 
+    public void clickMainBack(JPanel panelSide, JPanel panelFunction) {
+        panelSide.removeAll();
+        panelSide.repaint();
+        panelSide.revalidate();
+        panelSide.add(panelFunction);
+        panelSide.repaint();
+        panelSide.revalidate();
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel mainMenu;
+    private javax.swing.JButton backMainActor;
+    private javax.swing.JButton backMainAward;
+    private javax.swing.JButton backMainDirector;
+    private javax.swing.JButton backMainMovie;
+    private javax.swing.JButton backMainSoundtrack;
+    private javax.swing.JButton backMainStudio;
+    private javax.swing.JPanel bodyPanel;
+    private javax.swing.JPanel headerPanel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JPanel mainMenuPanel;
+    private javax.swing.JRadioButton radioSearchMovieId;
+    private javax.swing.JRadioButton radioSearchMovieName;
     private javax.swing.JButton searchActor;
+    private javax.swing.JPanel searchActorPanel;
     private javax.swing.JButton searchAward;
+    private javax.swing.JPanel searchAwardPanel;
     private javax.swing.JButton searchDirector;
+    private javax.swing.JPanel searchDirectorPanel;
     private javax.swing.JButton searchMovie;
+    private javax.swing.JPanel searchMoviePanel;
+    private java.util.List searchMovieResult;
+    private javax.swing.JButton searchMovieSubmit;
+    private javax.swing.JButton searchSoundtrack;
+    private javax.swing.JPanel searchSoundtrackPanel;
     private javax.swing.JButton searchStudio;
-    private javax.swing.JButton searchTrailer;
-    private javax.swing.JButton searchTrailer1;
+    private javax.swing.JPanel searchStudioPanel;
+    private javax.swing.JTextField textSearchMovieId;
+    private javax.swing.JTextField textSearchMovieName;
     private javax.swing.JLabel timeText;
     private javax.swing.JLabel welcomeText;
     // End of variables declaration//GEN-END:variables
