@@ -6,6 +6,9 @@
 package int203.project.view;
 
 import int203.project.etc.ConnectionBuilder;
+import int203.pronject.model.Director;
+import int203.pronject.model.Movie;
+import int203.pronject.model.Starring;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -14,6 +17,7 @@ import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.UIManager;
@@ -32,7 +36,7 @@ public class MovieManu extends javax.swing.JFrame {
     Connection conn = null;
     PreparedStatement pstm = null;
     ResultSet rs = null;
-    
+
     public MovieManu() {
         initComponents();
         conn = ConnectionBuilder.getConnection();
@@ -47,7 +51,6 @@ public class MovieManu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        searchMovieResult = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : ((javax.persistence.Query)null).getResultList();
         bodyPanel = new javax.swing.JPanel();
         mainMenuPanel = new javax.swing.JPanel();
         searchMovie = new javax.swing.JButton();
@@ -63,18 +66,32 @@ public class MovieManu extends javax.swing.JFrame {
         textSearchMovieId = new javax.swing.JTextField();
         textSearchMovieName = new javax.swing.JTextField();
         searchMovieSubmit = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        searchAwardPanel = new javax.swing.JPanel();
-        backMainAward = new javax.swing.JButton();
+        resultMovie = new javax.swing.JScrollPane();
+        resultMovieTable = new javax.swing.JTable();
         searchActorPanel = new javax.swing.JPanel();
         backMainActor = new javax.swing.JButton();
+        radioSearchActorId = new javax.swing.JRadioButton();
+        radioSearchActorName = new javax.swing.JRadioButton();
+        textSearchActorId = new javax.swing.JTextField();
+        textSearchActorName = new javax.swing.JTextField();
+        searchActorSubmit = new javax.swing.JButton();
+        resultActor = new javax.swing.JScrollPane();
+        resultActorTable = new javax.swing.JTable();
+        searchDirectorPanel = new javax.swing.JPanel();
+        backMainDirector = new javax.swing.JButton();
+        radioSearchDirectorId = new javax.swing.JRadioButton();
+        radioSearchDirectorName = new javax.swing.JRadioButton();
+        textSearchDirectorId = new javax.swing.JTextField();
+        textSearchDirectorName = new javax.swing.JTextField();
+        searchDirectorSubmit = new javax.swing.JButton();
+        resultDirector = new javax.swing.JScrollPane();
+        resultDirectorTable = new javax.swing.JTable();
+        searchAwardPanel = new javax.swing.JPanel();
+        backMainAward = new javax.swing.JButton();
         searchStudioPanel = new javax.swing.JPanel();
         backMainStudio = new javax.swing.JButton();
         searchSoundtrackPanel = new javax.swing.JPanel();
         backMainSoundtrack = new javax.swing.JButton();
-        searchDirectorPanel = new javax.swing.JPanel();
-        backMainDirector = new javax.swing.JButton();
         headerPanel = new javax.swing.JPanel();
         welcomeText = new javax.swing.JLabel();
         timeText = new javax.swing.JLabel();
@@ -137,8 +154,8 @@ public class MovieManu extends javax.swing.JFrame {
         mainMenuPanel.setLayout(mainMenuPanelLayout);
         mainMenuPanelLayout.setHorizontalGroup(
             mainMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainMenuPanelLayout.createSequentialGroup()
-                .addGap(365, 365, 365)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMenuPanelLayout.createSequentialGroup()
+                .addContainerGap(539, Short.MAX_VALUE)
                 .addGroup(mainMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(searchDirector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(searchSoundtrack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -146,12 +163,12 @@ public class MovieManu extends javax.swing.JFrame {
                     .addComponent(searchAward, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(searchActor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(searchMovie, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(366, Short.MAX_VALUE))
+                .addGap(493, 493, 493))
         );
         mainMenuPanelLayout.setVerticalGroup(
             mainMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainMenuPanelLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMenuPanelLayout.createSequentialGroup()
+                .addContainerGap(165, Short.MAX_VALUE)
                 .addComponent(searchActor)
                 .addGap(18, 18, 18)
                 .addComponent(searchAward)
@@ -163,7 +180,7 @@ public class MovieManu extends javax.swing.JFrame {
                 .addComponent(searchMovie)
                 .addGap(18, 18, 18)
                 .addComponent(searchDirector)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(123, 123, 123))
         );
 
         bodyPanel.add(mainMenuPanel, "card3");
@@ -200,7 +217,7 @@ public class MovieManu extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        resultMovieTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -211,7 +228,7 @@ public class MovieManu extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        resultMovie.setViewportView(resultMovieTable);
 
         javax.swing.GroupLayout searchMoviePanelLayout = new javax.swing.GroupLayout(searchMoviePanel);
         searchMoviePanel.setLayout(searchMoviePanelLayout);
@@ -235,12 +252,12 @@ public class MovieManu extends javax.swing.JFrame {
                                 .addGap(24, 24, 24)
                                 .addComponent(textSearchMovieName, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(radioSearchMovieName))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 348, Short.MAX_VALUE)
                         .addComponent(searchMovieSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62))))
             .addGroup(searchMoviePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(resultMovie)
                 .addContainerGap())
         );
         searchMoviePanelLayout.setVerticalGroup(
@@ -262,13 +279,229 @@ public class MovieManu extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addComponent(searchMovieSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addComponent(resultMovie, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(backMainMovie)
                 .addGap(24, 24, 24))
         );
 
         bodyPanel.add(searchMoviePanel, "card2");
+
+        backMainActor.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        backMainActor.setText("Back");
+        backMainActor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backMainActorActionPerformed(evt);
+            }
+        });
+
+        radioSearchActorId.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        radioSearchActorId.setText("Search by Actor ID");
+        radioSearchActorId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSearchActorIdActionPerformed(evt);
+            }
+        });
+
+        radioSearchActorName.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        radioSearchActorName.setText("Search by Actor Name");
+        radioSearchActorName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSearchActorNameActionPerformed(evt);
+            }
+        });
+
+        textSearchActorId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textSearchActorIdActionPerformed(evt);
+            }
+        });
+
+        searchActorSubmit.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        searchActorSubmit.setText("Submit");
+        searchActorSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchActorSubmitActionPerformed(evt);
+            }
+        });
+
+        resultActorTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        resultActor.setViewportView(resultActorTable);
+
+        javax.swing.GroupLayout searchActorPanelLayout = new javax.swing.GroupLayout(searchActorPanel);
+        searchActorPanel.setLayout(searchActorPanelLayout);
+        searchActorPanelLayout.setHorizontalGroup(
+            searchActorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchActorPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(searchActorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchActorPanelLayout.createSequentialGroup()
+                        .addComponent(backMainActor)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(searchActorPanelLayout.createSequentialGroup()
+                        .addGroup(searchActorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radioSearchActorId)
+                            .addGroup(searchActorPanelLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(textSearchActorId, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24)
+                        .addGroup(searchActorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(searchActorPanelLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(textSearchActorName, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(radioSearchActorName))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 348, Short.MAX_VALUE)
+                        .addComponent(searchActorSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62))))
+            .addGroup(searchActorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(resultActor)
+                .addContainerGap())
+        );
+        searchActorPanelLayout.setVerticalGroup(
+            searchActorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchActorPanelLayout.createSequentialGroup()
+                .addGroup(searchActorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchActorPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(searchActorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(searchActorPanelLayout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addGroup(searchActorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(textSearchActorId, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textSearchActorName, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(searchActorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(radioSearchActorId)
+                                .addComponent(radioSearchActorName))))
+                    .addGroup(searchActorPanelLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(searchActorSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(resultActor, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(backMainActor)
+                .addGap(24, 24, 24))
+        );
+
+        bodyPanel.add(searchActorPanel, "card2");
+
+        backMainDirector.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        backMainDirector.setText("Back");
+        backMainDirector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backMainDirectorActionPerformed(evt);
+            }
+        });
+
+        radioSearchDirectorId.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        radioSearchDirectorId.setText("Search by Actor ID");
+        radioSearchDirectorId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSearchDirectorIdActionPerformed(evt);
+            }
+        });
+
+        radioSearchDirectorName.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        radioSearchDirectorName.setText("Search by Actor Name");
+        radioSearchDirectorName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSearchDirectorNameActionPerformed(evt);
+            }
+        });
+
+        textSearchDirectorId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textSearchDirectorIdActionPerformed(evt);
+            }
+        });
+
+        searchDirectorSubmit.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        searchDirectorSubmit.setText("Submit");
+        searchDirectorSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchDirectorSubmitActionPerformed(evt);
+            }
+        });
+
+        resultDirectorTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        resultDirector.setViewportView(resultDirectorTable);
+
+        javax.swing.GroupLayout searchDirectorPanelLayout = new javax.swing.GroupLayout(searchDirectorPanel);
+        searchDirectorPanel.setLayout(searchDirectorPanelLayout);
+        searchDirectorPanelLayout.setHorizontalGroup(
+            searchDirectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchDirectorPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(searchDirectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchDirectorPanelLayout.createSequentialGroup()
+                        .addComponent(backMainDirector)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(searchDirectorPanelLayout.createSequentialGroup()
+                        .addGroup(searchDirectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radioSearchDirectorId)
+                            .addGroup(searchDirectorPanelLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(textSearchDirectorId, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24)
+                        .addGroup(searchDirectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(searchDirectorPanelLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(textSearchDirectorName, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(radioSearchDirectorName))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 348, Short.MAX_VALUE)
+                        .addComponent(searchDirectorSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62))))
+            .addGroup(searchDirectorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(resultDirector)
+                .addContainerGap())
+        );
+        searchDirectorPanelLayout.setVerticalGroup(
+            searchDirectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchDirectorPanelLayout.createSequentialGroup()
+                .addGroup(searchDirectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchDirectorPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(searchDirectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(searchDirectorPanelLayout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addGroup(searchDirectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(textSearchDirectorId, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textSearchDirectorName, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(searchDirectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(radioSearchDirectorId)
+                                .addComponent(radioSearchDirectorName))))
+                    .addGroup(searchDirectorPanelLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(searchDirectorSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(resultDirector, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(backMainDirector)
+                .addGap(24, 24, 24))
+        );
+
+        bodyPanel.add(searchDirectorPanel, "card2");
 
         backMainAward.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
         backMainAward.setText("Back");
@@ -285,44 +518,17 @@ public class MovieManu extends javax.swing.JFrame {
             .addGroup(searchAwardPanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(backMainAward)
-                .addContainerGap(848, Short.MAX_VALUE))
+                .addContainerGap(1149, Short.MAX_VALUE))
         );
         searchAwardPanelLayout.setVerticalGroup(
             searchAwardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchAwardPanelLayout.createSequentialGroup()
-                .addContainerGap(429, Short.MAX_VALUE)
+                .addContainerGap(589, Short.MAX_VALUE)
                 .addComponent(backMainAward)
                 .addGap(24, 24, 24))
         );
 
         bodyPanel.add(searchAwardPanel, "card2");
-
-        backMainActor.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
-        backMainActor.setText("Back");
-        backMainActor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backMainActorActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout searchActorPanelLayout = new javax.swing.GroupLayout(searchActorPanel);
-        searchActorPanel.setLayout(searchActorPanelLayout);
-        searchActorPanelLayout.setHorizontalGroup(
-            searchActorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchActorPanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(backMainActor)
-                .addContainerGap(848, Short.MAX_VALUE))
-        );
-        searchActorPanelLayout.setVerticalGroup(
-            searchActorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchActorPanelLayout.createSequentialGroup()
-                .addContainerGap(429, Short.MAX_VALUE)
-                .addComponent(backMainActor)
-                .addGap(24, 24, 24))
-        );
-
-        bodyPanel.add(searchActorPanel, "card2");
 
         backMainStudio.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
         backMainStudio.setText("Back");
@@ -339,12 +545,12 @@ public class MovieManu extends javax.swing.JFrame {
             .addGroup(searchStudioPanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(backMainStudio)
-                .addContainerGap(848, Short.MAX_VALUE))
+                .addContainerGap(1149, Short.MAX_VALUE))
         );
         searchStudioPanelLayout.setVerticalGroup(
             searchStudioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchStudioPanelLayout.createSequentialGroup()
-                .addContainerGap(429, Short.MAX_VALUE)
+                .addContainerGap(589, Short.MAX_VALUE)
                 .addComponent(backMainStudio)
                 .addGap(24, 24, 24))
         );
@@ -366,44 +572,17 @@ public class MovieManu extends javax.swing.JFrame {
             .addGroup(searchSoundtrackPanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(backMainSoundtrack)
-                .addContainerGap(848, Short.MAX_VALUE))
+                .addContainerGap(1149, Short.MAX_VALUE))
         );
         searchSoundtrackPanelLayout.setVerticalGroup(
             searchSoundtrackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchSoundtrackPanelLayout.createSequentialGroup()
-                .addContainerGap(429, Short.MAX_VALUE)
+                .addContainerGap(589, Short.MAX_VALUE)
                 .addComponent(backMainSoundtrack)
                 .addGap(24, 24, 24))
         );
 
         bodyPanel.add(searchSoundtrackPanel, "card2");
-
-        backMainDirector.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
-        backMainDirector.setText("Back");
-        backMainDirector.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backMainDirectorActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout searchDirectorPanelLayout = new javax.swing.GroupLayout(searchDirectorPanel);
-        searchDirectorPanel.setLayout(searchDirectorPanelLayout);
-        searchDirectorPanelLayout.setHorizontalGroup(
-            searchDirectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchDirectorPanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(backMainDirector)
-                .addContainerGap(848, Short.MAX_VALUE))
-        );
-        searchDirectorPanelLayout.setVerticalGroup(
-            searchDirectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchDirectorPanelLayout.createSequentialGroup()
-                .addContainerGap(429, Short.MAX_VALUE)
-                .addComponent(backMainDirector)
-                .addGap(24, 24, 24))
-        );
-
-        bodyPanel.add(searchDirectorPanel, "card2");
 
         welcomeText.setFont(new java.awt.Font("TH Mali Grade 6", 1, 60)); // NOI18N
         welcomeText.setText("Welcome to Movie Data System");
@@ -420,11 +599,11 @@ public class MovieManu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
-                        .addComponent(welcomeText)
-                        .addGap(189, 189, 189))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
                         .addComponent(timeText)
-                        .addGap(54, 54, 54))))
+                        .addGap(54, 54, 54))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
+                        .addComponent(welcomeText)
+                        .addGap(338, 338, 338))))
         );
         headerPanelLayout.setVerticalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -452,17 +631,13 @@ public class MovieManu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backMainMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMainMovieActionPerformed
         clickMainBack(bodyPanel, mainMenuPanel);
         // TODO add your handling code here:
     }//GEN-LAST:event_backMainMovieActionPerformed
-
-    private void backMainActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMainActorActionPerformed
-        clickMainBack(bodyPanel, mainMenuPanel);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backMainActorActionPerformed
 
     private void backMainAwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMainAwardActionPerformed
         clickMainBack(bodyPanel, mainMenuPanel);
@@ -478,11 +653,6 @@ public class MovieManu extends javax.swing.JFrame {
         clickMainBack(bodyPanel, mainMenuPanel);
         // TODO add your handling code here:
     }//GEN-LAST:event_backMainSoundtrackActionPerformed
-
-    private void backMainDirectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMainDirectorActionPerformed
-        clickMainBack(bodyPanel, mainMenuPanel);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backMainDirectorActionPerformed
 
     private void searchActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActorActionPerformed
         clickMainBack(bodyPanel, searchActorPanel);
@@ -533,15 +703,139 @@ public class MovieManu extends javax.swing.JFrame {
     }//GEN-LAST:event_radioSearchMovieIdActionPerformed
 
     private void searchMovieSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchMovieSubmitActionPerformed
-        String searchInputName = "";
-        int searchInputId;
-        if (radioSearchMovieId.isSelected()) {
-            searchInputId = Integer.parseInt(textSearchMovieId.getText());
-        } else {
-            searchInputName = textSearchMovieName.getText();
+        try {
+            String searchInputName = "";
+            int searchInputId;
+            if (!radioSearchMovieId.isSelected() && !radioSearchMovieName.isSelected()) {
+                rs = Movie.searchMovie();
+                resultMovieTable.setModel(DbUtils.resultSetToTableModel(rs));
+                return;
+            } else if (radioSearchMovieId.isSelected()) {
+                searchInputId = Integer.parseInt(textSearchMovieId.getText());
+                rs = Movie.searchMovieById(searchInputId);
+                resultMovieTable.setModel(DbUtils.resultSetToTableModel(rs));
+                return;
+            } else {
+                searchInputName = textSearchMovieName.getText();
+                if (searchInputName.length() == 0) {
+                    searchInputName = "?";
+                }
+                rs = Movie.searchMovieByName(searchInputName);
+                resultMovieTable.setModel(DbUtils.resultSetToTableModel(rs));
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error!");
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_searchMovieSubmitActionPerformed
+
+    private void backMainActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMainActorActionPerformed
+        clickMainBack(bodyPanel, mainMenuPanel);
+// TODO add your handling code here:
+    }//GEN-LAST:event_backMainActorActionPerformed
+
+    private void radioSearchActorIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSearchActorIdActionPerformed
+        if (radioSearchActorId.isSelected()) {
+            textSearchActorId.setEnabled(true);
+            textSearchActorName.setEnabled(false);
+        }
+        radioSearchActorName.setSelected(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioSearchActorIdActionPerformed
+
+    private void radioSearchActorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSearchActorNameActionPerformed
+        if (radioSearchActorName.isSelected()) {
+            textSearchActorId.setEnabled(false);
+            textSearchActorName.setEnabled(true);
+        }
+        radioSearchActorId.setSelected(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioSearchActorNameActionPerformed
+
+    private void searchActorSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActorSubmitActionPerformed
+        try {
+            String searchInputName = "";
+            int searchInputId;
+            if (!radioSearchActorId.isSelected() && !radioSearchActorName.isSelected()) {
+                rs = Starring.searchActor();
+                resultActorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                return;
+            } else if (radioSearchActorId.isSelected()) {
+                searchInputId = Integer.parseInt(textSearchActorId.getText());
+                rs = Starring.searchActorById(searchInputId);
+                resultActorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                return;
+            } else {
+                searchInputName = textSearchActorName.getText();
+                if (searchInputName.length() == 0) {
+                    searchInputName = "?";
+                }
+                rs = Starring.searchActorByName(searchInputName);
+                resultActorTable.setModel(DbUtils.resultSetToTableModel(rs));
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error!");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchActorSubmitActionPerformed
+
+    private void textSearchActorIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchActorIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textSearchActorIdActionPerformed
+
+    private void backMainDirectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMainDirectorActionPerformed
+        clickMainBack(bodyPanel, mainMenuPanel);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backMainDirectorActionPerformed
+
+    private void radioSearchDirectorIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSearchDirectorIdActionPerformed
+        if (radioSearchDirectorId.isSelected()) {
+            textSearchDirectorId.setEnabled(true);
+            textSearchDirectorName.setEnabled(false);
+        }
+        radioSearchDirectorName.setSelected(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioSearchDirectorIdActionPerformed
+
+    private void radioSearchDirectorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSearchDirectorNameActionPerformed
+        if (radioSearchDirectorName.isSelected()) {
+            textSearchDirectorId.setEnabled(false);
+            textSearchDirectorName.setEnabled(true);
+        }
+        radioSearchDirectorId.setSelected(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioSearchDirectorNameActionPerformed
+
+    private void textSearchDirectorIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchDirectorIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textSearchDirectorIdActionPerformed
+
+    private void searchDirectorSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDirectorSubmitActionPerformed
+        try {
+            String searchInputName = "";
+            int searchInputId;
+            if (!radioSearchDirectorId.isSelected() && !radioSearchDirectorName.isSelected()) {
+                rs = Director.searchDirector();
+                resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                return;
+            } else if (radioSearchDirectorId.isSelected()) {
+                searchInputId = Integer.parseInt(textSearchDirectorId.getText());
+                rs = Director.searchDirectorById(searchInputId);
+                resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                return;
+            } else {
+                searchInputName = textSearchDirectorName.getText();
+                if (searchInputName.length() == 0) {
+                    searchInputName = "?";
+                }
+                rs = Director.searchDirectorByName(searchInputName);
+                resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error!");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchDirectorSubmitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -602,25 +896,38 @@ public class MovieManu extends javax.swing.JFrame {
     private javax.swing.JButton backMainStudio;
     private javax.swing.JPanel bodyPanel;
     private javax.swing.JPanel headerPanel;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel mainMenuPanel;
+    private javax.swing.JRadioButton radioSearchActorId;
+    private javax.swing.JRadioButton radioSearchActorName;
+    private javax.swing.JRadioButton radioSearchDirectorId;
+    private javax.swing.JRadioButton radioSearchDirectorName;
     private javax.swing.JRadioButton radioSearchMovieId;
     private javax.swing.JRadioButton radioSearchMovieName;
+    private javax.swing.JScrollPane resultActor;
+    private javax.swing.JTable resultActorTable;
+    private javax.swing.JScrollPane resultDirector;
+    private javax.swing.JTable resultDirectorTable;
+    private javax.swing.JScrollPane resultMovie;
+    private javax.swing.JTable resultMovieTable;
     private javax.swing.JButton searchActor;
     private javax.swing.JPanel searchActorPanel;
+    private javax.swing.JButton searchActorSubmit;
     private javax.swing.JButton searchAward;
     private javax.swing.JPanel searchAwardPanel;
     private javax.swing.JButton searchDirector;
     private javax.swing.JPanel searchDirectorPanel;
+    private javax.swing.JButton searchDirectorSubmit;
     private javax.swing.JButton searchMovie;
     private javax.swing.JPanel searchMoviePanel;
-    private java.util.List searchMovieResult;
     private javax.swing.JButton searchMovieSubmit;
     private javax.swing.JButton searchSoundtrack;
     private javax.swing.JPanel searchSoundtrackPanel;
     private javax.swing.JButton searchStudio;
     private javax.swing.JPanel searchStudioPanel;
+    private javax.swing.JTextField textSearchActorId;
+    private javax.swing.JTextField textSearchActorName;
+    private javax.swing.JTextField textSearchDirectorId;
+    private javax.swing.JTextField textSearchDirectorName;
     private javax.swing.JTextField textSearchMovieId;
     private javax.swing.JTextField textSearchMovieName;
     private javax.swing.JLabel timeText;
