@@ -38,7 +38,7 @@ public class Starring {
             PreparedStatement pstm = conn.prepareStatement("SELECT star.starringId AS \"ID\", star.firstname|| ' ' ||star.lastname AS \"Starring Name\", star.age AS \"Age\", star.street \n"
                     + "AS \"Street\", star.`state` AS \"State\", star.city AS \"City\", star.bio AS \"BIO\", star.dob AS \"Date of brith\", star.nationality AS \"Nationality\", star.sex AS \"Sex\"\n"
                     + "FROM Starring star WHERE \"Starring Name\" LIKE ? ;");
-            pstm.setString(1, name);
+            pstm.setString(1, '%' + name + '%');
             rs = pstm.executeQuery();
         } catch (SQLException e) {
             System.err.println(e);

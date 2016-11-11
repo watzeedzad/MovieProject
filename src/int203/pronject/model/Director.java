@@ -21,7 +21,9 @@ public class Director {
         ResultSet rs = null;
         try {
             Connection conn = ConnectionBuilder.getConnection();
-            PreparedStatement pstm = conn.prepareStatement("");
+            PreparedStatement pstm = conn.prepareStatement("SELECT directorId AS \"ID\", firstname|| ' ' ||lastname AS \"Name\", age AS \"Age\", street AS \"Street\", `state` AS \"State\",\n"
+                    + "city AS \"City\", bio AS \"Bio\", dob AS \"Date of brith\", nationality AS \"Nationality\", sex AS \"Sex\"\n"
+                    + "FROM Director di ;");
             rs = pstm.executeQuery();
         } catch (SQLException e) {
             System.err.println(e);
@@ -33,8 +35,10 @@ public class Director {
         ResultSet rs = null;
         try {
             Connection conn = ConnectionBuilder.getConnection();
-            PreparedStatement pstm = conn.prepareStatement("");
-            pstm.setString(1, name);
+            PreparedStatement pstm = conn.prepareStatement("SELECT directorId AS \"ID\", firstname|| ' ' ||lastname AS \"Name\", age AS \"Age\", street AS \"Street\", `state` AS \"State\",\n"
+                    + "city AS \"City\", bio AS \"Bio\", dob AS \"Date of brith\", nationality AS \"Nationality\", sex AS \"Sex\"\n"
+                    + "FROM Director di WHERE \"Name\" LIKE ?;");
+            pstm.setString(1, '%' + name + '%');
             rs = pstm.executeQuery();
         } catch (SQLException e) {
             System.err.println(e);
@@ -46,7 +50,9 @@ public class Director {
         ResultSet rs = null;
         try {
             Connection conn = ConnectionBuilder.getConnection();
-            PreparedStatement pstm = conn.prepareStatement("");
+            PreparedStatement pstm = conn.prepareStatement("SELECT directorId AS \"ID\", firstname|| ' ' ||lastname AS \"Name\", age AS \"Age\", street AS \"Street\", `state` AS \"State\",\n"
+                    + "city AS \"City\", bio AS \"Bio\", dob AS \"Date of brith\", nationality AS \"Nationality\", sex AS \"Sex\"\n"
+                    + "FROM Director di WHERE directorId = ?;");
             pstm.setInt(1, id);
             rs = pstm.executeQuery();
         } catch (SQLException e) {

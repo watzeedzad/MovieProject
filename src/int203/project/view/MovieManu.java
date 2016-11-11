@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.JLabel;
@@ -219,13 +220,13 @@ public class MovieManu extends javax.swing.JFrame {
 
         resultMovieTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         resultMovie.setViewportView(resultMovieTable);
@@ -327,13 +328,13 @@ public class MovieManu extends javax.swing.JFrame {
 
         resultActorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         resultActor.setViewportView(resultActorTable);
@@ -435,13 +436,13 @@ public class MovieManu extends javax.swing.JFrame {
 
         resultDirectorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         resultDirector.setViewportView(resultDirectorTable);
@@ -709,21 +710,29 @@ public class MovieManu extends javax.swing.JFrame {
             if (!radioSearchMovieId.isSelected() && !radioSearchMovieName.isSelected()) {
                 rs = Movie.searchMovie();
                 resultMovieTable.setModel(DbUtils.resultSetToTableModel(rs));
-                return;
             } else if (radioSearchMovieId.isSelected()) {
                 searchInputId = Integer.parseInt(textSearchMovieId.getText());
                 rs = Movie.searchMovieById(searchInputId);
-                resultMovieTable.setModel(DbUtils.resultSetToTableModel(rs));
-                return;
+                if (rs.next()) {
+                    resultMovieTable.setModel(DbUtils.resultSetToTableModel(rs));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Not Found!");
+                }
             } else {
                 searchInputName = textSearchMovieName.getText();
                 if (searchInputName.length() == 0) {
                     searchInputName = "?";
                 }
                 rs = Movie.searchMovieByName(searchInputName);
-                resultMovieTable.setModel(DbUtils.resultSetToTableModel(rs));
+                if (rs.next()) {
+                    resultMovieTable.setModel(DbUtils.resultSetToTableModel(rs));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Not Found!");
+                }
             }
         } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error!");
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error!");
         }
         // TODO add your handling code here:
@@ -759,21 +768,29 @@ public class MovieManu extends javax.swing.JFrame {
             if (!radioSearchActorId.isSelected() && !radioSearchActorName.isSelected()) {
                 rs = Starring.searchActor();
                 resultActorTable.setModel(DbUtils.resultSetToTableModel(rs));
-                return;
             } else if (radioSearchActorId.isSelected()) {
                 searchInputId = Integer.parseInt(textSearchActorId.getText());
                 rs = Starring.searchActorById(searchInputId);
-                resultActorTable.setModel(DbUtils.resultSetToTableModel(rs));
-                return;
+                if (rs.next()) {
+                    resultActorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Not Found!");
+                }
             } else {
                 searchInputName = textSearchActorName.getText();
                 if (searchInputName.length() == 0) {
                     searchInputName = "?";
                 }
                 rs = Starring.searchActorByName(searchInputName);
-                resultActorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                if (rs.next()) {
+                    resultActorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Not Found!");
+                }
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Error!");
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error!");
         }
         // TODO add your handling code here:
@@ -817,21 +834,29 @@ public class MovieManu extends javax.swing.JFrame {
             if (!radioSearchDirectorId.isSelected() && !radioSearchDirectorName.isSelected()) {
                 rs = Director.searchDirector();
                 resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
-                return;
             } else if (radioSearchDirectorId.isSelected()) {
                 searchInputId = Integer.parseInt(textSearchDirectorId.getText());
                 rs = Director.searchDirectorById(searchInputId);
-                resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
-                return;
+                if (rs.next()) {
+                    resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Not Found!");
+                }
             } else {
                 searchInputName = textSearchDirectorName.getText();
                 if (searchInputName.length() == 0) {
                     searchInputName = "?";
                 }
                 rs = Director.searchDirectorByName(searchInputName);
-                resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                if (rs.next()) {
+                    resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Not Found!");
+                }
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Error!");
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error!");
         }
         // TODO add your handling code here:
