@@ -21,12 +21,13 @@ public class Movie {
         ResultSet rs = null;
         try {
             Connection conn = ConnectionBuilder.getConnection();
-            PreparedStatement pstm = conn.prepareStatement("SELECT mo.movieId AS \"ID\", mo.movieName AS \"Name\", mo.boxOffice AS \"Box Office\", mo.duration AS \"Duration\", \n"
+            PreparedStatement pstm = conn.prepareStatement("SELECT mo.movieId AS \"ID\", mo.movieName AS \"Name\", mo.boxOffice AS \"Box Office\", mo.duration AS \"Duration\",\n"
                     + "mo.rating AS \"Rating\", so.name AS \"Soundtrack Name\", di.firstname|| ' ' ||di.lastname AS \"Director Name\",\n"
                     + "aw.awardName AS \"Award\", stu.name AS \"Studio\", tmo.type AS \"Type\", star.firstname|| ' ' ||star.lastname AS \"Starring Name\" FROM Movie mo\n"
                     + "LEFT JOIN Soundtrack so ON so.soundtrackId = mo.soundtrackId\n"
                     + "LEFT JOIN Director di ON di.directorId = mo.directorId\n"
-                    + "LEFT JOIN Award aw ON aw.awardId = mo.awardId\n"
+                    + "LEFT JOIN MovieAward maw ON maw.awardId = mo.movieId\n"
+                    + "LEFT JOIN Award aw ON aw.awardId = maw.awardId\n"
                     + "LEFT JOIN Studio stu ON stu.studioId = mo.studioId\n"
                     + "LEFT JOIN TypeMovie tmo ON tmo.typeMovieId = mo.typeMovie\n"
                     + "LEFT JOIN MovieActor ma ON ma.movieId = mo.movieId\n"
@@ -43,12 +44,13 @@ public class Movie {
         ResultSet rs = null;
         try {
             Connection conn = ConnectionBuilder.getConnection();
-            PreparedStatement pstm = conn.prepareStatement("SELECT mo.movieId AS \"ID\", mo.movieName AS \"Name\", mo.boxOffice AS \"Box Office\", mo.duration AS \"Duration\", \n"
+            PreparedStatement pstm = conn.prepareStatement("SELECT mo.movieId AS \"ID\", mo.movieName AS \"Name\", mo.boxOffice AS \"Box Office\", mo.duration AS \"Duration\",\n"
                     + "mo.rating AS \"Rating\", so.name AS \"Soundtrack Name\", di.firstname|| ' ' ||di.lastname AS \"Director Name\",\n"
                     + "aw.awardName AS \"Award\", stu.name AS \"Studio\", tmo.type AS \"Type\", star.firstname|| ' ' ||star.lastname AS \"Starring Name\" FROM Movie mo\n"
                     + "LEFT JOIN Soundtrack so ON so.soundtrackId = mo.soundtrackId\n"
                     + "LEFT JOIN Director di ON di.directorId = mo.directorId\n"
-                    + "LEFT JOIN Award aw ON aw.awardId = mo.awardId\n"
+                    + "LEFT JOIN MovieAward maw ON maw.awardId = mo.movieId\n"
+                    + "LEFT JOIN Award aw ON aw.awardId = maw.awardId\n"
                     + "LEFT JOIN Studio stu ON stu.studioId = mo.studioId\n"
                     + "LEFT JOIN TypeMovie tmo ON tmo.typeMovieId = mo.typeMovie\n"
                     + "LEFT JOIN MovieActor ma ON ma.movieId = mo.movieId\n"
@@ -65,11 +67,13 @@ public class Movie {
         ResultSet rs = null;
         try {
             Connection conn = ConnectionBuilder.getConnection();
-            PreparedStatement pstm = conn.prepareStatement("SELECT mo.movieId AS \"ID\", mo.movieName AS \"Name\", mo.boxOffice AS \"Box Office\", mo.duration AS \"Duration\", mo.rating AS \"Rating\", so.name AS \"Soundtrack Name\", di.firstname|| ' ' ||di.lastname AS \"Director Name\", \n"
-                    + "aw.awardName AS \"Award\", stu.`name` AS \"Studio\", tmo.`type` AS \"Type\", star.firstname|| ' ' ||star.lastname AS \"Starring Name\"  FROM Movie mo \n"
+            PreparedStatement pstm = conn.prepareStatement("SELECT mo.movieId AS \"ID\", mo.movieName AS \"Name\", mo.boxOffice AS \"Box Office\", mo.duration AS \"Duration\",\n"
+                    + "mo.rating AS \"Rating\", so.name AS \"Soundtrack Name\", di.firstname|| ' ' ||di.lastname AS \"Director Name\",\n"
+                    + "aw.awardName AS \"Award\", stu.name AS \"Studio\", tmo.type AS \"Type\", star.firstname|| ' ' ||star.lastname AS \"Starring Name\" FROM Movie mo\n"
                     + "LEFT JOIN Soundtrack so ON so.soundtrackId = mo.soundtrackId\n"
                     + "LEFT JOIN Director di ON di.directorId = mo.directorId\n"
-                    + "LEFT JOIN Award aw ON aw.awardId = mo.awardId\n"
+                    + "LEFT JOIN MovieAward maw ON maw.awardId = mo.movieId\n"
+                    + "LEFT JOIN Award aw ON aw.awardId = maw.awardId\n"
                     + "LEFT JOIN Studio stu ON stu.studioId = mo.studioId\n"
                     + "LEFT JOIN TypeMovie tmo ON tmo.typeMovieId = mo.typeMovie\n"
                     + "LEFT JOIN MovieActor ma ON ma.movieId = mo.movieId\n"

@@ -8,6 +8,7 @@ package int203.project.view;
 import int203.project.etc.ConnectionBuilder;
 import int203.pronject.model.Director;
 import int203.pronject.model.Movie;
+import int203.pronject.model.Soundtrack;
 import int203.pronject.model.Starring;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -87,12 +88,23 @@ public class MovieManu extends javax.swing.JFrame {
         searchDirectorSubmit = new javax.swing.JButton();
         resultDirector = new javax.swing.JScrollPane();
         resultDirectorTable = new javax.swing.JTable();
+        searchSoundtrackPanel = new javax.swing.JPanel();
+        backMainSoundtrack = new javax.swing.JButton();
+        resultSoundtrack = new javax.swing.JScrollPane();
+        resultSoundtrackTable = new javax.swing.JTable();
+        searchDirectorSubmit1 = new javax.swing.JButton();
+        radioSearchSoundtrackById = new javax.swing.JRadioButton();
+        radioSearchSoundtrackByName = new javax.swing.JRadioButton();
+        radioSearchSoundtrackByGenre = new javax.swing.JRadioButton();
+        radioSearchSoundtrackByCompressor = new javax.swing.JRadioButton();
+        textSearchSoundtrackById = new javax.swing.JTextField();
+        textSearchSoundtrackByName = new javax.swing.JTextField();
+        textSearchSoundtrackByGenre = new javax.swing.JTextField();
+        textSearchSoundtrackByCompressor = new javax.swing.JTextField();
         searchAwardPanel = new javax.swing.JPanel();
         backMainAward = new javax.swing.JButton();
         searchStudioPanel = new javax.swing.JPanel();
         backMainStudio = new javax.swing.JButton();
-        searchSoundtrackPanel = new javax.swing.JPanel();
-        backMainSoundtrack = new javax.swing.JButton();
         headerPanel = new javax.swing.JPanel();
         welcomeText = new javax.swing.JLabel();
         timeText = new javax.swing.JLabel();
@@ -504,6 +516,155 @@ public class MovieManu extends javax.swing.JFrame {
 
         bodyPanel.add(searchDirectorPanel, "card2");
 
+        backMainSoundtrack.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        backMainSoundtrack.setText("Back");
+        backMainSoundtrack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backMainSoundtrackActionPerformed(evt);
+            }
+        });
+
+        resultSoundtrackTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        resultSoundtrack.setViewportView(resultSoundtrackTable);
+
+        searchDirectorSubmit1.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        searchDirectorSubmit1.setText("Submit");
+        searchDirectorSubmit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchDirectorSubmit1ActionPerformed(evt);
+            }
+        });
+
+        radioSearchSoundtrackById.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        radioSearchSoundtrackById.setText("Search By ID");
+        radioSearchSoundtrackById.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSearchSoundtrackByIdActionPerformed(evt);
+            }
+        });
+
+        radioSearchSoundtrackByName.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        radioSearchSoundtrackByName.setText("Search By Name");
+        radioSearchSoundtrackByName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSearchSoundtrackByNameActionPerformed(evt);
+            }
+        });
+
+        radioSearchSoundtrackByGenre.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        radioSearchSoundtrackByGenre.setText("Search By Genre");
+        radioSearchSoundtrackByGenre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSearchSoundtrackByGenreActionPerformed(evt);
+            }
+        });
+
+        radioSearchSoundtrackByCompressor.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        radioSearchSoundtrackByCompressor.setText("Search By Compressor");
+        radioSearchSoundtrackByCompressor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSearchSoundtrackByCompressorActionPerformed(evt);
+            }
+        });
+
+        textSearchSoundtrackById.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textSearchSoundtrackByIdActionPerformed(evt);
+            }
+        });
+
+        textSearchSoundtrackByName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textSearchSoundtrackByNameActionPerformed(evt);
+            }
+        });
+
+        textSearchSoundtrackByGenre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textSearchSoundtrackByGenreActionPerformed(evt);
+            }
+        });
+
+        textSearchSoundtrackByCompressor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textSearchSoundtrackByCompressorActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout searchSoundtrackPanelLayout = new javax.swing.GroupLayout(searchSoundtrackPanel);
+        searchSoundtrackPanel.setLayout(searchSoundtrackPanelLayout);
+        searchSoundtrackPanelLayout.setHorizontalGroup(
+            searchSoundtrackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchSoundtrackPanelLayout.createSequentialGroup()
+                .addGroup(searchSoundtrackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, searchSoundtrackPanelLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(backMainSoundtrack)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, searchSoundtrackPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(resultSoundtrack)))
+                .addContainerGap())
+            .addGroup(searchSoundtrackPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(searchSoundtrackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioSearchSoundtrackById)
+                    .addComponent(textSearchSoundtrackById, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(searchSoundtrackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioSearchSoundtrackByName)
+                    .addComponent(textSearchSoundtrackByName, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(searchSoundtrackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textSearchSoundtrackByGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radioSearchSoundtrackByGenre))
+                .addGap(45, 45, 45)
+                .addGroup(searchSoundtrackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioSearchSoundtrackByCompressor)
+                    .addComponent(textSearchSoundtrackByCompressor, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(searchDirectorSubmit1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+        );
+        searchSoundtrackPanelLayout.setVerticalGroup(
+            searchSoundtrackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchSoundtrackPanelLayout.createSequentialGroup()
+                .addGroup(searchSoundtrackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchSoundtrackPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(searchSoundtrackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(radioSearchSoundtrackById)
+                            .addComponent(radioSearchSoundtrackByName)
+                            .addComponent(radioSearchSoundtrackByGenre)
+                            .addComponent(radioSearchSoundtrackByCompressor))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(searchSoundtrackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textSearchSoundtrackById, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textSearchSoundtrackByName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textSearchSoundtrackByGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textSearchSoundtrackByCompressor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(searchSoundtrackPanelLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(searchDirectorSubmit1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(resultSoundtrack, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(backMainSoundtrack)
+                .addGap(24, 24, 24))
+        );
+
+        bodyPanel.add(searchSoundtrackPanel, "card2");
+
         backMainAward.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
         backMainAward.setText("Back");
         backMainAward.addActionListener(new java.awt.event.ActionListener() {
@@ -557,33 +718,6 @@ public class MovieManu extends javax.swing.JFrame {
         );
 
         bodyPanel.add(searchStudioPanel, "card2");
-
-        backMainSoundtrack.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
-        backMainSoundtrack.setText("Back");
-        backMainSoundtrack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backMainSoundtrackActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout searchSoundtrackPanelLayout = new javax.swing.GroupLayout(searchSoundtrackPanel);
-        searchSoundtrackPanel.setLayout(searchSoundtrackPanelLayout);
-        searchSoundtrackPanelLayout.setHorizontalGroup(
-            searchSoundtrackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchSoundtrackPanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(backMainSoundtrack)
-                .addContainerGap(1149, Short.MAX_VALUE))
-        );
-        searchSoundtrackPanelLayout.setVerticalGroup(
-            searchSoundtrackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchSoundtrackPanelLayout.createSequentialGroup()
-                .addContainerGap(589, Short.MAX_VALUE)
-                .addComponent(backMainSoundtrack)
-                .addGap(24, 24, 24))
-        );
-
-        bodyPanel.add(searchSoundtrackPanel, "card2");
 
         welcomeText.setFont(new java.awt.Font("TH Mali Grade 6", 1, 60)); // NOI18N
         welcomeText.setText("Welcome to Movie Data System");
@@ -730,9 +864,11 @@ public class MovieManu extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Not Found!");
                 }
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Error!");
+            System.err.println(ex);
         } catch (SQLException ex) {
+            System.err.println(ex);
             JOptionPane.showMessageDialog(null, "Error!");
         }
         // TODO add your handling code here:
@@ -790,8 +926,10 @@ public class MovieManu extends javax.swing.JFrame {
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Error!");
+            System.err.println(ex);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error!");
+            System.err.println(ex);
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_searchActorSubmitActionPerformed
@@ -856,11 +994,136 @@ public class MovieManu extends javax.swing.JFrame {
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Error!");
+            System.err.println(ex);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error!");
+            System.err.println(ex);
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_searchDirectorSubmitActionPerformed
+
+    private void searchDirectorSubmit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDirectorSubmit1ActionPerformed
+        try {
+            int id;
+            String name;
+            String genre;
+            String compressor;
+            if (!radioSearchSoundtrackById.isSelected() && !radioSearchSoundtrackByName.isSelected() && !radioSearchSoundtrackByGenre.isSelected() && !radioSearchSoundtrackByCompressor.isSelected()) {
+                Soundtrack.searchSoundtrack();
+            } else if (radioSearchSoundtrackById.isSelected()) {
+                id = Integer.parseInt(textSearchSoundtrackById.getText());
+                rs = Soundtrack.searchSoundtrackById(id);
+                if (rs.next()) {
+                    resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Not Found!");
+                }
+            } else if (radioSearchSoundtrackByName.isSelected()) {
+                name = textSearchSoundtrackByName.getText();
+                rs = Soundtrack.searchSoundtrackByName(name);
+                if (rs.next()) {
+                    resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Not Found!");
+                }
+            } else if (radioSearchSoundtrackByGenre.isSelected()) {
+                genre = textSearchSoundtrackByGenre.getText();
+                rs = Soundtrack.searchSoundtrackByGenre(genre);
+                if (rs.next()) {
+                    resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Not Found!");
+                }
+            } else {
+                compressor = textSearchSoundtrackByCompressor.getText();
+                rs = Soundtrack.searchSoundtrackByCompressor(compressor);
+                if (rs.next()) {
+                    resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Not Found!");
+                }
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Error!");
+            System.err.println(ex);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error!");
+            System.err.println(ex);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchDirectorSubmit1ActionPerformed
+
+    private void radioSearchSoundtrackByIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSearchSoundtrackByIdActionPerformed
+        if (radioSearchSoundtrackById.isSelected()) {
+            textSearchSoundtrackById.setEnabled(true);
+            textSearchSoundtrackByName.setEnabled(false);
+            textSearchSoundtrackByGenre.setEnabled(false);
+            textSearchSoundtrackByCompressor.setEnabled(false);
+        }
+        radioSearchSoundtrackById.setEnabled(true);
+        radioSearchSoundtrackByName.setEnabled(false);
+        radioSearchSoundtrackByGenre.setEnabled(false);
+        radioSearchSoundtrackByCompressor.setEnabled(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioSearchSoundtrackByIdActionPerformed
+
+    private void radioSearchSoundtrackByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSearchSoundtrackByNameActionPerformed
+        if (radioSearchSoundtrackByName.isSelected()) {
+            textSearchSoundtrackById.setEnabled(false);
+            textSearchSoundtrackByName.setEnabled(true);
+            textSearchSoundtrackByGenre.setEnabled(false);
+            textSearchSoundtrackByCompressor.setEnabled(false);
+        }
+        radioSearchSoundtrackById.setEnabled(false);
+        radioSearchSoundtrackByName.setEnabled(true);
+        radioSearchSoundtrackByGenre.setEnabled(false);
+        radioSearchSoundtrackByCompressor.setEnabled(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioSearchSoundtrackByNameActionPerformed
+
+    private void radioSearchSoundtrackByGenreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSearchSoundtrackByGenreActionPerformed
+        if (radioSearchSoundtrackByGenre.isSelected()) {
+            textSearchSoundtrackById.setEnabled(false);
+            textSearchSoundtrackByName.setEnabled(false);
+            textSearchSoundtrackByGenre.setEnabled(true);
+            textSearchSoundtrackByCompressor.setEnabled(false);
+        }
+        radioSearchSoundtrackById.setEnabled(false);
+        radioSearchSoundtrackByName.setEnabled(false);
+        radioSearchSoundtrackByGenre.setEnabled(true);
+        radioSearchSoundtrackByCompressor.setEnabled(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioSearchSoundtrackByGenreActionPerformed
+
+    private void radioSearchSoundtrackByCompressorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSearchSoundtrackByCompressorActionPerformed
+        if (radioSearchSoundtrackByGenre.isSelected()) {
+            textSearchSoundtrackById.setEnabled(false);
+            textSearchSoundtrackByName.setEnabled(false);
+            textSearchSoundtrackByGenre.setEnabled(false);
+            textSearchSoundtrackByCompressor.setEnabled(true);
+        }
+        radioSearchSoundtrackById.setEnabled(false);
+        radioSearchSoundtrackByName.setEnabled(false);
+        radioSearchSoundtrackByGenre.setEnabled(false);
+        radioSearchSoundtrackByCompressor.setEnabled(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioSearchSoundtrackByCompressorActionPerformed
+
+    private void textSearchSoundtrackByIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchSoundtrackByIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textSearchSoundtrackByIdActionPerformed
+
+    private void textSearchSoundtrackByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchSoundtrackByNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textSearchSoundtrackByNameActionPerformed
+
+    private void textSearchSoundtrackByGenreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchSoundtrackByGenreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textSearchSoundtrackByGenreActionPerformed
+
+    private void textSearchSoundtrackByCompressorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchSoundtrackByCompressorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textSearchSoundtrackByCompressorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -928,12 +1191,18 @@ public class MovieManu extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioSearchDirectorName;
     private javax.swing.JRadioButton radioSearchMovieId;
     private javax.swing.JRadioButton radioSearchMovieName;
+    private javax.swing.JRadioButton radioSearchSoundtrackByCompressor;
+    private javax.swing.JRadioButton radioSearchSoundtrackByGenre;
+    private javax.swing.JRadioButton radioSearchSoundtrackById;
+    private javax.swing.JRadioButton radioSearchSoundtrackByName;
     private javax.swing.JScrollPane resultActor;
     private javax.swing.JTable resultActorTable;
     private javax.swing.JScrollPane resultDirector;
     private javax.swing.JTable resultDirectorTable;
     private javax.swing.JScrollPane resultMovie;
     private javax.swing.JTable resultMovieTable;
+    private javax.swing.JScrollPane resultSoundtrack;
+    private javax.swing.JTable resultSoundtrackTable;
     private javax.swing.JButton searchActor;
     private javax.swing.JPanel searchActorPanel;
     private javax.swing.JButton searchActorSubmit;
@@ -942,6 +1211,7 @@ public class MovieManu extends javax.swing.JFrame {
     private javax.swing.JButton searchDirector;
     private javax.swing.JPanel searchDirectorPanel;
     private javax.swing.JButton searchDirectorSubmit;
+    private javax.swing.JButton searchDirectorSubmit1;
     private javax.swing.JButton searchMovie;
     private javax.swing.JPanel searchMoviePanel;
     private javax.swing.JButton searchMovieSubmit;
@@ -955,6 +1225,10 @@ public class MovieManu extends javax.swing.JFrame {
     private javax.swing.JTextField textSearchDirectorName;
     private javax.swing.JTextField textSearchMovieId;
     private javax.swing.JTextField textSearchMovieName;
+    private javax.swing.JTextField textSearchSoundtrackByCompressor;
+    private javax.swing.JTextField textSearchSoundtrackByGenre;
+    private javax.swing.JTextField textSearchSoundtrackById;
+    private javax.swing.JTextField textSearchSoundtrackByName;
     private javax.swing.JLabel timeText;
     private javax.swing.JLabel welcomeText;
     // End of variables declaration//GEN-END:variables
