@@ -37,7 +37,7 @@ public class Starring {
             Connection conn = ConnectionBuilder.getConnection();
             PreparedStatement pstm = conn.prepareStatement("SELECT starringId AS \"ID\", CONCAT(firstname, \" \" , lastname) AS \"Starring Name\", age AS \"Age\", street AS \"Street\",\n"
                     + "`state` AS \"State\", city AS \"City\", bio AS \"BIO\", dob AS \"Date of brith\", nationality AS \"Nationality\", sex AS \"Sex\"\n"
-                    + "FROM Starring star WHERE CONCAT(firstname, \" \" , lastname) LIKE ? ;");
+                    + "FROM Starring star WHERE CONCAT(star.firstname, \" \" , star.lastname) LIKE ? ;");
             pstm.setString(1, '%' + name + '%');
             rs = pstm.executeQuery();
         } catch (SQLException e) {
@@ -52,7 +52,7 @@ public class Starring {
             Connection conn = ConnectionBuilder.getConnection();
             PreparedStatement pstm = conn.prepareStatement("SELECT starringId AS \"ID\", CONCAT(firstname, \" \" , lastname) AS \"Starring Name\", age AS \"Age\", street AS \"Street\",\n"
                     + "`state` AS \"State\", city AS \"City\", bio AS \"BIO\", dob AS \"Date of brith\", nationality AS \"Nationality\", sex AS \"Sex\"\n"
-                    + "FROM Starring star WHERE starringId = ?;");
+                    + "FROM Starring star WHERE star.starringId = ?;");
             pstm.setInt(1, id);
             rs = pstm.executeQuery();
         } catch (SQLException e) {

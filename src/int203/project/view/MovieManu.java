@@ -10,6 +10,7 @@ import int203.pronject.model.Director;
 import int203.pronject.model.Movie;
 import int203.pronject.model.Soundtrack;
 import int203.pronject.model.Starring;
+import int203.pronject.model.Studio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -105,6 +106,13 @@ public class MovieManu extends javax.swing.JFrame {
         backMainAward = new javax.swing.JButton();
         searchStudioPanel = new javax.swing.JPanel();
         backMainStudio = new javax.swing.JButton();
+        radioSearchStudioId = new javax.swing.JRadioButton();
+        radioSearchStudioName = new javax.swing.JRadioButton();
+        textSearchStudioId = new javax.swing.JTextField();
+        textSearchStudioName = new javax.swing.JTextField();
+        searchStudioSubmit = new javax.swing.JButton();
+        resultStudio = new javax.swing.JScrollPane();
+        resultStudioTable = new javax.swing.JTable();
         headerPanel = new javax.swing.JPanel();
         welcomeText = new javax.swing.JLabel();
         timeText = new javax.swing.JLabel();
@@ -700,19 +708,94 @@ public class MovieManu extends javax.swing.JFrame {
             }
         });
 
+        radioSearchStudioId.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        radioSearchStudioId.setText("Search by ID");
+        radioSearchStudioId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSearchStudioIdActionPerformed(evt);
+            }
+        });
+
+        radioSearchStudioName.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        radioSearchStudioName.setText("Search by Name");
+        radioSearchStudioName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSearchStudioNameActionPerformed(evt);
+            }
+        });
+
+        searchStudioSubmit.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        searchStudioSubmit.setText("Submit");
+        searchStudioSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchStudioSubmitActionPerformed(evt);
+            }
+        });
+
+        resultStudioTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        resultStudio.setViewportView(resultStudioTable);
+
         javax.swing.GroupLayout searchStudioPanelLayout = new javax.swing.GroupLayout(searchStudioPanel);
         searchStudioPanel.setLayout(searchStudioPanelLayout);
         searchStudioPanelLayout.setHorizontalGroup(
             searchStudioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchStudioPanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(backMainStudio)
-                .addContainerGap(1149, Short.MAX_VALUE))
+                .addGroup(searchStudioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchStudioPanelLayout.createSequentialGroup()
+                        .addComponent(backMainStudio)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(searchStudioPanelLayout.createSequentialGroup()
+                        .addGroup(searchStudioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radioSearchStudioId)
+                            .addGroup(searchStudioPanelLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(textSearchStudioId, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24)
+                        .addGroup(searchStudioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(searchStudioPanelLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(textSearchStudioName, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(radioSearchStudioName))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 348, Short.MAX_VALUE)
+                        .addComponent(searchStudioSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62))))
+            .addGroup(searchStudioPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(resultStudio)
+                .addContainerGap())
         );
         searchStudioPanelLayout.setVerticalGroup(
             searchStudioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchStudioPanelLayout.createSequentialGroup()
-                .addContainerGap(589, Short.MAX_VALUE)
+                .addGroup(searchStudioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchStudioPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(searchStudioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(searchStudioPanelLayout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addGroup(searchStudioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(textSearchStudioId, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textSearchStudioName, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(searchStudioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(radioSearchStudioId)
+                                .addComponent(radioSearchStudioName))))
+                    .addGroup(searchStudioPanelLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(searchStudioSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(resultStudio, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(backMainStudio)
                 .addGap(24, 24, 24))
         );
@@ -779,11 +862,6 @@ public class MovieManu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_backMainAwardActionPerformed
 
-    private void backMainStudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMainStudioActionPerformed
-        clickMainBack(bodyPanel, mainMenuPanel);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backMainStudioActionPerformed
-
     private void backMainSoundtrackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMainSoundtrackActionPerformed
         clickMainBack(bodyPanel, mainMenuPanel);
         // TODO add your handling code here:
@@ -848,6 +926,7 @@ public class MovieManu extends javax.swing.JFrame {
                 searchInputId = Integer.parseInt(textSearchMovieId.getText());
                 rs = Movie.searchMovieById(searchInputId);
                 if (rs.next()) {
+                    rs.previous();
                     resultMovieTable.setModel(DbUtils.resultSetToTableModel(rs));
                 } else {
                     JOptionPane.showMessageDialog(null, "Not Found!");
@@ -859,6 +938,7 @@ public class MovieManu extends javax.swing.JFrame {
                 }
                 rs = Movie.searchMovieByName(searchInputName);
                 if (rs.next()) {
+                    rs.previous();
                     resultMovieTable.setModel(DbUtils.resultSetToTableModel(rs));
                 } else {
                     JOptionPane.showMessageDialog(null, "Not Found!");
@@ -908,6 +988,7 @@ public class MovieManu extends javax.swing.JFrame {
                 searchInputId = Integer.parseInt(textSearchActorId.getText());
                 rs = Starring.searchActorById(searchInputId);
                 if (rs.next()) {
+                    rs.previous();
                     resultActorTable.setModel(DbUtils.resultSetToTableModel(rs));
                 } else {
                     JOptionPane.showMessageDialog(null, "Not Found!");
@@ -919,6 +1000,7 @@ public class MovieManu extends javax.swing.JFrame {
                 }
                 rs = Starring.searchActorByName(searchInputName);
                 if (rs.next()) {
+                    rs.previous();
                     resultActorTable.setModel(DbUtils.resultSetToTableModel(rs));
                 } else {
                     JOptionPane.showMessageDialog(null, "Not Found!");
@@ -976,6 +1058,7 @@ public class MovieManu extends javax.swing.JFrame {
                 searchInputId = Integer.parseInt(textSearchDirectorId.getText());
                 rs = Director.searchDirectorById(searchInputId);
                 if (rs.next()) {
+                    rs.previous();
                     resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
                 } else {
                     JOptionPane.showMessageDialog(null, "Not Found!");
@@ -987,6 +1070,7 @@ public class MovieManu extends javax.swing.JFrame {
                 }
                 rs = Director.searchDirectorByName(searchInputName);
                 if (rs.next()) {
+                    rs.previous();
                     resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
                 } else {
                     JOptionPane.showMessageDialog(null, "Not Found!");
@@ -1009,12 +1093,15 @@ public class MovieManu extends javax.swing.JFrame {
             String genre;
             String compressor;
             if (!radioSearchSoundtrackById.isSelected() && !radioSearchSoundtrackByName.isSelected() && !radioSearchSoundtrackByGenre.isSelected() && !radioSearchSoundtrackByCompressor.isSelected()) {
-                Soundtrack.searchSoundtrack();
+
+                rs = Soundtrack.searchSoundtrack();
+                resultSoundtrackTable.setModel(DbUtils.resultSetToTableModel(rs));
             } else if (radioSearchSoundtrackById.isSelected()) {
                 id = Integer.parseInt(textSearchSoundtrackById.getText());
                 rs = Soundtrack.searchSoundtrackById(id);
                 if (rs.next()) {
-                    resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                    rs.previous();
+                    resultSoundtrackTable.setModel(DbUtils.resultSetToTableModel(rs));
                 } else {
                     JOptionPane.showMessageDialog(null, "Not Found!");
                 }
@@ -1022,7 +1109,8 @@ public class MovieManu extends javax.swing.JFrame {
                 name = textSearchSoundtrackByName.getText();
                 rs = Soundtrack.searchSoundtrackByName(name);
                 if (rs.next()) {
-                    resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                    rs.previous();
+                    resultSoundtrackTable.setModel(DbUtils.resultSetToTableModel(rs));
                 } else {
                     JOptionPane.showMessageDialog(null, "Not Found!");
                 }
@@ -1030,7 +1118,8 @@ public class MovieManu extends javax.swing.JFrame {
                 genre = textSearchSoundtrackByGenre.getText();
                 rs = Soundtrack.searchSoundtrackByGenre(genre);
                 if (rs.next()) {
-                    resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                    rs.previous();
+                    resultSoundtrackTable.setModel(DbUtils.resultSetToTableModel(rs));
                 } else {
                     JOptionPane.showMessageDialog(null, "Not Found!");
                 }
@@ -1038,7 +1127,8 @@ public class MovieManu extends javax.swing.JFrame {
                 compressor = textSearchSoundtrackByCompressor.getText();
                 rs = Soundtrack.searchSoundtrackByCompressor(compressor);
                 if (rs.next()) {
-                    resultDirectorTable.setModel(DbUtils.resultSetToTableModel(rs));
+                    rs.previous();
+                    resultSoundtrackTable.setModel(DbUtils.resultSetToTableModel(rs));
                 } else {
                     JOptionPane.showMessageDialog(null, "Not Found!");
                 }
@@ -1060,10 +1150,10 @@ public class MovieManu extends javax.swing.JFrame {
             textSearchSoundtrackByGenre.setEnabled(false);
             textSearchSoundtrackByCompressor.setEnabled(false);
         }
-        radioSearchSoundtrackById.setEnabled(true);
-        radioSearchSoundtrackByName.setEnabled(false);
-        radioSearchSoundtrackByGenre.setEnabled(false);
-        radioSearchSoundtrackByCompressor.setEnabled(false);
+        radioSearchSoundtrackById.setSelected(true);
+        radioSearchSoundtrackByName.setSelected(false);
+        radioSearchSoundtrackByGenre.setSelected(false);
+        radioSearchSoundtrackByCompressor.setSelected(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_radioSearchSoundtrackByIdActionPerformed
 
@@ -1074,10 +1164,10 @@ public class MovieManu extends javax.swing.JFrame {
             textSearchSoundtrackByGenre.setEnabled(false);
             textSearchSoundtrackByCompressor.setEnabled(false);
         }
-        radioSearchSoundtrackById.setEnabled(false);
-        radioSearchSoundtrackByName.setEnabled(true);
-        radioSearchSoundtrackByGenre.setEnabled(false);
-        radioSearchSoundtrackByCompressor.setEnabled(false);
+        radioSearchSoundtrackById.setSelected(false);
+        radioSearchSoundtrackByName.setSelected(true);
+        radioSearchSoundtrackByGenre.setSelected(false);
+        radioSearchSoundtrackByCompressor.setSelected(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_radioSearchSoundtrackByNameActionPerformed
 
@@ -1088,10 +1178,10 @@ public class MovieManu extends javax.swing.JFrame {
             textSearchSoundtrackByGenre.setEnabled(true);
             textSearchSoundtrackByCompressor.setEnabled(false);
         }
-        radioSearchSoundtrackById.setEnabled(false);
-        radioSearchSoundtrackByName.setEnabled(false);
-        radioSearchSoundtrackByGenre.setEnabled(true);
-        radioSearchSoundtrackByCompressor.setEnabled(false);
+        radioSearchSoundtrackById.setSelected(false);
+        radioSearchSoundtrackByName.setSelected(false);
+        radioSearchSoundtrackByGenre.setSelected(true);
+        radioSearchSoundtrackByCompressor.setSelected(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_radioSearchSoundtrackByGenreActionPerformed
 
@@ -1102,10 +1192,10 @@ public class MovieManu extends javax.swing.JFrame {
             textSearchSoundtrackByGenre.setEnabled(false);
             textSearchSoundtrackByCompressor.setEnabled(true);
         }
-        radioSearchSoundtrackById.setEnabled(false);
-        radioSearchSoundtrackByName.setEnabled(false);
-        radioSearchSoundtrackByGenre.setEnabled(false);
-        radioSearchSoundtrackByCompressor.setEnabled(true);
+        radioSearchSoundtrackById.setSelected(false);
+        radioSearchSoundtrackByName.setSelected(false);
+        radioSearchSoundtrackByGenre.setSelected(false);
+        radioSearchSoundtrackByCompressor.setSelected(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_radioSearchSoundtrackByCompressorActionPerformed
 
@@ -1124,6 +1214,68 @@ public class MovieManu extends javax.swing.JFrame {
     private void textSearchSoundtrackByCompressorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchSoundtrackByCompressorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textSearchSoundtrackByCompressorActionPerformed
+
+    private void backMainStudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMainStudioActionPerformed
+        clickMainBack(bodyPanel, mainMenuPanel);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backMainStudioActionPerformed
+
+    private void radioSearchStudioIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSearchStudioIdActionPerformed
+        if (radioSearchStudioId.isSelected()) {
+            textSearchStudioId.setEnabled(true);
+            textSearchStudioName.setEnabled(false);
+        }
+        radioSearchStudioName.setSelected(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioSearchStudioIdActionPerformed
+
+    private void radioSearchStudioNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSearchStudioNameActionPerformed
+        if (radioSearchStudioId.isSelected()) {
+            textSearchStudioId.setEnabled(false);
+            textSearchStudioName.setEnabled(true);
+        }
+        radioSearchStudioId.setSelected(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioSearchStudioNameActionPerformed
+
+    private void searchStudioSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudioSubmitActionPerformed
+        try {
+            String searchInputName = "";
+            int searchInputId;
+            if (!radioSearchStudioId.isSelected() && !radioSearchStudioName.isSelected()) {
+                rs = Studio.searchStudio();
+                resultStudioTable.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (radioSearchStudioId.isSelected()) {
+                searchInputId = Integer.parseInt(textSearchStudioId.getText());
+                rs = Studio.searchStudioById(searchInputId);
+                if (rs.next()) {
+                    rs.previous();
+                    resultStudioTable.setModel(DbUtils.resultSetToTableModel(rs));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Not Found!");
+                }
+            } else {
+                searchInputName = textSearchStudioName.getText();
+                if (searchInputName.length() == 0) {
+                    searchInputName = "?";
+                }
+                rs = Studio.searchStudioByName(searchInputName);
+                if (rs.next()) {
+                    rs.previous();
+                    resultStudioTable.setModel(DbUtils.resultSetToTableModel(rs));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Not Found!");
+                }
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Error!");
+            System.err.println(ex);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error!");
+            System.err.println(ex);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchStudioSubmitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1195,6 +1347,8 @@ public class MovieManu extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioSearchSoundtrackByGenre;
     private javax.swing.JRadioButton radioSearchSoundtrackById;
     private javax.swing.JRadioButton radioSearchSoundtrackByName;
+    private javax.swing.JRadioButton radioSearchStudioId;
+    private javax.swing.JRadioButton radioSearchStudioName;
     private javax.swing.JScrollPane resultActor;
     private javax.swing.JTable resultActorTable;
     private javax.swing.JScrollPane resultDirector;
@@ -1203,6 +1357,8 @@ public class MovieManu extends javax.swing.JFrame {
     private javax.swing.JTable resultMovieTable;
     private javax.swing.JScrollPane resultSoundtrack;
     private javax.swing.JTable resultSoundtrackTable;
+    private javax.swing.JScrollPane resultStudio;
+    private javax.swing.JTable resultStudioTable;
     private javax.swing.JButton searchActor;
     private javax.swing.JPanel searchActorPanel;
     private javax.swing.JButton searchActorSubmit;
@@ -1219,6 +1375,7 @@ public class MovieManu extends javax.swing.JFrame {
     private javax.swing.JButton searchSoundtrackSubmit;
     private javax.swing.JButton searchStudio;
     private javax.swing.JPanel searchStudioPanel;
+    private javax.swing.JButton searchStudioSubmit;
     private javax.swing.JTextField textSearchActorId;
     private javax.swing.JTextField textSearchActorName;
     private javax.swing.JTextField textSearchDirectorId;
@@ -1229,6 +1386,8 @@ public class MovieManu extends javax.swing.JFrame {
     private javax.swing.JTextField textSearchSoundtrackByGenre;
     private javax.swing.JTextField textSearchSoundtrackById;
     private javax.swing.JTextField textSearchSoundtrackByName;
+    private javax.swing.JTextField textSearchStudioId;
+    private javax.swing.JTextField textSearchStudioName;
     private javax.swing.JLabel timeText;
     private javax.swing.JLabel welcomeText;
     // End of variables declaration//GEN-END:variables
