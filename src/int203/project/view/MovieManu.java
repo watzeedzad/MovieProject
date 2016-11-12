@@ -6,6 +6,7 @@
 package int203.project.view;
 
 import int203.project.etc.ConnectionBuilder;
+import int203.pronject.model.Award;
 import int203.pronject.model.Director;
 import int203.pronject.model.Movie;
 import int203.pronject.model.Soundtrack;
@@ -104,6 +105,11 @@ public class MovieManu extends javax.swing.JFrame {
         textSearchSoundtrackByCompressor = new javax.swing.JTextField();
         searchAwardPanel = new javax.swing.JPanel();
         backMainAward = new javax.swing.JButton();
+        movieAwardSubmit = new javax.swing.JButton();
+        StarringAwardSubmit = new javax.swing.JButton();
+        directorAwardSubmit = new javax.swing.JButton();
+        awardResult = new javax.swing.JScrollPane();
+        awardResultTable = new javax.swing.JTable();
         searchStudioPanel = new javax.swing.JPanel();
         backMainStudio = new javax.swing.JButton();
         radioSearchStudioId = new javax.swing.JRadioButton();
@@ -681,19 +687,74 @@ public class MovieManu extends javax.swing.JFrame {
             }
         });
 
+        movieAwardSubmit.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        movieAwardSubmit.setText("Movie Award");
+        movieAwardSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                movieAwardSubmitActionPerformed(evt);
+            }
+        });
+
+        StarringAwardSubmit.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        StarringAwardSubmit.setText("Actor Award");
+        StarringAwardSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StarringAwardSubmitActionPerformed(evt);
+            }
+        });
+
+        directorAwardSubmit.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        directorAwardSubmit.setText("Director Award");
+        directorAwardSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                directorAwardSubmitActionPerformed(evt);
+            }
+        });
+
+        awardResultTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        awardResult.setViewportView(awardResultTable);
+
         javax.swing.GroupLayout searchAwardPanelLayout = new javax.swing.GroupLayout(searchAwardPanel);
         searchAwardPanel.setLayout(searchAwardPanelLayout);
         searchAwardPanelLayout.setHorizontalGroup(
             searchAwardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchAwardPanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(backMainAward)
-                .addContainerGap(1149, Short.MAX_VALUE))
+                .addGroup(searchAwardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backMainAward)
+                    .addGroup(searchAwardPanelLayout.createSequentialGroup()
+                        .addComponent(movieAwardSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(StarringAwardSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(directorAwardSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(593, Short.MAX_VALUE))
+            .addGroup(searchAwardPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(awardResult)
+                .addContainerGap())
         );
         searchAwardPanelLayout.setVerticalGroup(
             searchAwardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchAwardPanelLayout.createSequentialGroup()
-                .addContainerGap(589, Short.MAX_VALUE)
+                .addGap(51, 51, 51)
+                .addGroup(searchAwardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(movieAwardSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(StarringAwardSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(directorAwardSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(awardResult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(backMainAward)
                 .addGap(24, 24, 24))
         );
@@ -1277,6 +1338,24 @@ public class MovieManu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_searchStudioSubmitActionPerformed
 
+    private void movieAwardSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movieAwardSubmitActionPerformed
+        rs = Award.searchMovieAward();
+        awardResultTable.setModel(DbUtils.resultSetToTableModel(rs));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_movieAwardSubmitActionPerformed
+
+    private void StarringAwardSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StarringAwardSubmitActionPerformed
+        rs = Award.searchStarringAward();
+        awardResultTable.setModel(DbUtils.resultSetToTableModel(rs));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_StarringAwardSubmitActionPerformed
+
+    private void directorAwardSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directorAwardSubmitActionPerformed
+        rs = Award.searchDirectorAward();
+        awardResultTable.setModel(DbUtils.resultSetToTableModel(rs));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_directorAwardSubmitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1328,6 +1407,9 @@ public class MovieManu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton StarringAwardSubmit;
+    private javax.swing.JScrollPane awardResult;
+    private javax.swing.JTable awardResultTable;
     private javax.swing.JButton backMainActor;
     private javax.swing.JButton backMainAward;
     private javax.swing.JButton backMainDirector;
@@ -1335,8 +1417,10 @@ public class MovieManu extends javax.swing.JFrame {
     private javax.swing.JButton backMainSoundtrack;
     private javax.swing.JButton backMainStudio;
     private javax.swing.JPanel bodyPanel;
+    private javax.swing.JButton directorAwardSubmit;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel mainMenuPanel;
+    private javax.swing.JButton movieAwardSubmit;
     private javax.swing.JRadioButton radioSearchActorId;
     private javax.swing.JRadioButton radioSearchActorName;
     private javax.swing.JRadioButton radioSearchDirectorId;
