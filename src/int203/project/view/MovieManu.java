@@ -92,7 +92,7 @@ public class MovieManu extends javax.swing.JFrame {
         backMainSoundtrack = new javax.swing.JButton();
         resultSoundtrack = new javax.swing.JScrollPane();
         resultSoundtrackTable = new javax.swing.JTable();
-        searchDirectorSubmit1 = new javax.swing.JButton();
+        searchSoundtrackSubmit = new javax.swing.JButton();
         radioSearchSoundtrackById = new javax.swing.JRadioButton();
         radioSearchSoundtrackByName = new javax.swing.JRadioButton();
         radioSearchSoundtrackByGenre = new javax.swing.JRadioButton();
@@ -537,11 +537,11 @@ public class MovieManu extends javax.swing.JFrame {
         ));
         resultSoundtrack.setViewportView(resultSoundtrackTable);
 
-        searchDirectorSubmit1.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
-        searchDirectorSubmit1.setText("Submit");
-        searchDirectorSubmit1.addActionListener(new java.awt.event.ActionListener() {
+        searchSoundtrackSubmit.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
+        searchSoundtrackSubmit.setText("Submit");
+        searchSoundtrackSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchDirectorSubmit1ActionPerformed(evt);
+                searchSoundtrackSubmitActionPerformed(evt);
             }
         });
 
@@ -570,7 +570,7 @@ public class MovieManu extends javax.swing.JFrame {
         });
 
         radioSearchSoundtrackByCompressor.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
-        radioSearchSoundtrackByCompressor.setText("Search By Compressor");
+        radioSearchSoundtrackByCompressor.setText("Search By Composor");
         radioSearchSoundtrackByCompressor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioSearchSoundtrackByCompressorActionPerformed(evt);
@@ -632,8 +632,8 @@ public class MovieManu extends javax.swing.JFrame {
                 .addGroup(searchSoundtrackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(radioSearchSoundtrackByCompressor)
                     .addComponent(textSearchSoundtrackByCompressor, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(searchDirectorSubmit1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addComponent(searchSoundtrackSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
         searchSoundtrackPanelLayout.setVerticalGroup(
@@ -655,7 +655,7 @@ public class MovieManu extends javax.swing.JFrame {
                             .addComponent(textSearchSoundtrackByCompressor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(searchSoundtrackPanelLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(searchDirectorSubmit1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(searchSoundtrackSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(resultSoundtrack, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -1002,7 +1002,7 @@ public class MovieManu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_searchDirectorSubmitActionPerformed
 
-    private void searchDirectorSubmit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDirectorSubmit1ActionPerformed
+    private void searchSoundtrackSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSoundtrackSubmitActionPerformed
         try {
             int id;
             String name;
@@ -1051,7 +1051,7 @@ public class MovieManu extends javax.swing.JFrame {
             System.err.println(ex);
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchDirectorSubmit1ActionPerformed
+    }//GEN-LAST:event_searchSoundtrackSubmitActionPerformed
 
     private void radioSearchSoundtrackByIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSearchSoundtrackByIdActionPerformed
         if (radioSearchSoundtrackById.isSelected()) {
@@ -1211,12 +1211,12 @@ public class MovieManu extends javax.swing.JFrame {
     private javax.swing.JButton searchDirector;
     private javax.swing.JPanel searchDirectorPanel;
     private javax.swing.JButton searchDirectorSubmit;
-    private javax.swing.JButton searchDirectorSubmit1;
     private javax.swing.JButton searchMovie;
     private javax.swing.JPanel searchMoviePanel;
     private javax.swing.JButton searchMovieSubmit;
     private javax.swing.JButton searchSoundtrack;
     private javax.swing.JPanel searchSoundtrackPanel;
+    private javax.swing.JButton searchSoundtrackSubmit;
     private javax.swing.JButton searchStudio;
     private javax.swing.JPanel searchStudioPanel;
     private javax.swing.JTextField textSearchActorId;

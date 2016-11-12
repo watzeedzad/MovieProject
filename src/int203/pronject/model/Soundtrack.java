@@ -23,7 +23,7 @@ public class Soundtrack {
             Connection conn = ConnectionBuilder.getConnection();
             PreparedStatement pstm = conn.prepareStatement("SELECT so.soundtrackId AS \"ID\", so.`name` AS \"Name\", sog.genreType AS \"Gerne\" FROM Soundtrack so\n"
                     + "LEFT JOIN SoundtrackGenre sog ON so.genreId = sog.genreId\n"
-                    + "LEFT JOIN SoundtrackCompressor soc ON so.compressorId = soc.compressorId ;");
+                    + "LEFT JOIN SoundtrackCompressor soc ON so.composerId = soc.composerId ;");
             rs = pstm.executeQuery();
         } catch (SQLException e) {
             System.err.println(e);
@@ -37,7 +37,7 @@ public class Soundtrack {
             Connection conn = ConnectionBuilder.getConnection();
             PreparedStatement pstm = conn.prepareStatement("SELECT so.soundtrackId AS \"ID\", so.`name` AS \"Name\", sog.genreType AS \"Gerne\" FROM Soundtrack so\n"
                     + "LEFT JOIN SoundtrackGenre sog ON so.genreId = sog.genreId\n"
-                    + "LEFT JOIN SoundtrackCompressor soc ON so.compressorId = soc.compressorId WHERE so.`name` LIKE ?;");
+                    + "LEFT JOIN SoundtrackCompressor soc ON so.composerId = soc.composerId WHERE so.`name` LIKE ?;");
             pstm.setString(1, '%' + name + '%');
             rs = pstm.executeQuery();
         } catch (SQLException e) {
@@ -52,7 +52,7 @@ public class Soundtrack {
             Connection conn = ConnectionBuilder.getConnection();
             PreparedStatement pstm = conn.prepareStatement("SELECT so.soundtrackId AS \"ID\", so.`name` AS \"Name\", sog.genreType AS \"Gerne\" FROM Soundtrack so\n"
                     + "LEFT JOIN SoundtrackGenre sog ON so.genreId = sog.genreId\n"
-                    + "LEFT JOIN SoundtrackCompressor soc ON so.compressorId = soc.compressorId WHERE sog.genreType LIKE ? ;");
+                    + "LEFT JOIN SoundtrackCompressor soc ON so.composerId = soc.composerId WHERE sog.genreType LIKE ? ;");
             pstm.setString(1, '%' + genre + '%');
             rs = pstm.executeQuery();
         } catch (SQLException e) {
@@ -61,14 +61,14 @@ public class Soundtrack {
         return rs;
     }
 
-    public static ResultSet searchSoundtrackByCompressor(String compressor) {
+    public static ResultSet searchSoundtrackByCompressor(String composer) {
         ResultSet rs = null;
         try {
             Connection conn = ConnectionBuilder.getConnection();
             PreparedStatement pstm = conn.prepareStatement("SELECT so.soundtrackId AS \"ID\", so.`name` AS \"Name\", sog.genreType AS \"Gerne\" FROM Soundtrack so\n"
                     + "LEFT JOIN SoundtrackGenre sog ON so.genreId = sog.genreId\n"
-                    + "LEFT JOIN SoundtrackCompressor soc ON so.compressorId = soc.compressorId WHERE soc.compressorName LIKE ? ;");
-            pstm.setString(1, '%' + compressor + '%');
+                    + "LEFT JOIN SoundtrackCompressor soc ON so.composerId = soc.composerId WHERE soc.composerName LIKE ? ;");
+            pstm.setString(1, '%' + composer + '%');
             rs = pstm.executeQuery();
         } catch (SQLException e) {
             System.err.println(e);
@@ -82,7 +82,7 @@ public class Soundtrack {
             Connection conn = ConnectionBuilder.getConnection();
             PreparedStatement pstm = conn.prepareStatement("SELECT so.soundtrackId AS \"ID\", so.`name` AS \"Name\", sog.genreType AS \"Gerne\" FROM Soundtrack so\n"
                     + "LEFT JOIN SoundtrackGenre sog ON so.genreId = sog.genreId\n"
-                    + "LEFT JOIN SoundtrackCompressor soc ON so.compressorId = soc.compressorId WHERE so.soundtrackId = ? ;");
+                    + "LEFT JOIN SoundtrackCompressor soc ON so.composerId = soc.composerId WHERE so.soundtrackId = ? ;");
             pstm.setInt(1, id);
             rs = pstm.executeQuery();
         } catch (SQLException e) {

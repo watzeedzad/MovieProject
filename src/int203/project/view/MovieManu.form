@@ -669,8 +669,8 @@
                           <Component id="radioSearchSoundtrackByCompressor" min="-2" max="-2" attributes="0"/>
                           <Component id="textSearchSoundtrackByCompressor" min="-2" pref="218" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="45" max="32767" attributes="0"/>
-                      <Component id="searchDirectorSubmit1" min="-2" pref="120" max="-2" attributes="0"/>
+                      <EmptySpace pref="61" max="32767" attributes="0"/>
+                      <Component id="searchSoundtrackSubmit" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -697,7 +697,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="searchDirectorSubmit1" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="searchSoundtrackSubmit" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="37" max="32767" attributes="0"/>
@@ -743,7 +743,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="searchDirectorSubmit1">
+            <Component class="javax.swing.JButton" name="searchSoundtrackSubmit">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="TH Mali Grade 6" size="35" style="1"/>
@@ -751,7 +751,7 @@
                 <Property name="text" type="java.lang.String" value="Submit"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchDirectorSubmit1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchSoundtrackSubmitActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="radioSearchSoundtrackById">
@@ -792,7 +792,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="TH Mali Grade 6" size="35" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Search By Compressor"/>
+                <Property name="text" type="java.lang.String" value="Search By Composor"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioSearchSoundtrackByCompressorActionPerformed"/>
