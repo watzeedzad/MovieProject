@@ -431,7 +431,7 @@ public class MovieManu extends javax.swing.JFrame {
         });
 
         radioSearchDirectorId.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
-        radioSearchDirectorId.setText("Search by Actor ID");
+        radioSearchDirectorId.setText("Search by Director ID");
         radioSearchDirectorId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioSearchDirectorIdActionPerformed(evt);
@@ -439,7 +439,7 @@ public class MovieManu extends javax.swing.JFrame {
         });
 
         radioSearchDirectorName.setFont(new java.awt.Font("TH Mali Grade 6", 1, 35)); // NOI18N
-        radioSearchDirectorName.setText("Search by Actor Name");
+        radioSearchDirectorName.setText("Search by Director Name");
         radioSearchDirectorName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioSearchDirectorNameActionPerformed(evt);

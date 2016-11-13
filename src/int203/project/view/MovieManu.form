@@ -565,7 +565,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="TH Mali Grade 6" size="35" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Search by Actor ID"/>
+                <Property name="text" type="java.lang.String" value="Search by Director ID"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioSearchDirectorIdActionPerformed"/>
@@ -576,7 +576,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="TH Mali Grade 6" size="35" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Search by Actor Name"/>
+                <Property name="text" type="java.lang.String" value="Search by Director Name"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioSearchDirectorNameActionPerformed"/>

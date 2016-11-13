@@ -35,9 +35,9 @@ public class Soundtrack {
         ResultSet rs = null;
         try {
             Connection conn = ConnectionBuilder.getConnection();
-            PreparedStatement pstm = conn.prepareStatement("SSELECT so.soundtrackId AS \"ID\", so.`name` AS \"Name\", sog.genreType AS \"Gerne\", soc.composerName AS \"Composer\" FROM Soundtrack so\n"
+            PreparedStatement pstm = conn.prepareStatement("SELECT so.soundtrackId AS \"ID\", so.`name` AS \"Name\", sog.genreType AS \"Gerne\", soc.composerName AS \"Composer\" FROM Soundtrack so\n"
                     + "LEFT JOIN SoundtrackGenre sog ON so.genreId = sog.genreId\n"
-                    + "LEFT JOIN SoundtrackComposer soc ON so.composerId = soc.composerId WHERE so.`name` LIKE ? ;");
+                    + "LEFT JOIN SoundtrackComposer soc ON so.composerId = soc.composerId WHERE so.`name` LIKE ?;");
             pstm.setString(1, '%' + name + '%');
             rs = pstm.executeQuery();
         } catch (SQLException e) {
